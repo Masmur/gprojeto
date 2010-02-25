@@ -16,6 +16,7 @@
             </p>
             <p>
                 <input type="submit" value="Adicionar" />
+                <%= Ajax.ActionLink("Cancelar", "List", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "listProduto" })%>
             </p>
         </fieldset>
 
