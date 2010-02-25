@@ -19,6 +19,7 @@ namespace GerenciadorProjeto.Controllers
         public ActionResult Index()
         {
             // Retorna lista de projetos da empresa na sessão.
+            ViewData["titulo"] = "Projetos";
             return View(_model.Produtos.Where(p => p.EmpresaId == Convert.ToInt64(Session["EmpresaId"])));
         }
 
