@@ -3,3 +3,8 @@ C:\Users\Fagner\Desktop\GerenciadorProjeto\GerenciadorProjeto\bin\GerenciadorPro
 C:\Users\Fagner\Desktop\GerenciadorProjeto\GerenciadorProjeto\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Fagner\Desktop\GerenciadorProjeto\GerenciadorProjeto\obj\Debug\GerenciadorProjeto.dll
 C:\Users\Fagner\Desktop\GerenciadorProjeto\GerenciadorProjeto\obj\Debug\GerenciadorProjeto.pdb
+C:\Documents and Settings\fagner.SAUDENET\Desktop\GerenciadorProjeto\bin\GerenciadorProjeto.dll
+C:\Documents and Settings\fagner.SAUDENET\Desktop\GerenciadorProjeto\bin\GerenciadorProjeto.pdb
+C:\Documents and Settings\fagner.SAUDENET\Desktop\GerenciadorProjeto\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\fagner.SAUDENET\Desktop\GerenciadorProjeto\obj\Debug\GerenciadorProjeto.dll
+C:\Documents and Settings\fagner.SAUDENET\Desktop\GerenciadorProjeto\obj\Debug\GerenciadorProjeto.pdb

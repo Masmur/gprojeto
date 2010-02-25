@@ -5,7 +5,7 @@ to use a different color start by replacing all instances of
 ----------------------------------------------------------*/
 body
 {
-    background-color: #5c87b2;
+    background-color: #EEF3F5;
     font-size: .75em;
     font-family: Verdana, Helvetica, Sans-Serif;
     margin: 0;
@@ -84,13 +84,17 @@ first child of the left and right table columns */
 page width. Or, you can specify an exact pixel width. */
 .page
 {
-    width: 90%;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
 }
 
 #header
 {
+    -moz-background-clip:border;
+    -moz-background-inline-policy:continuous;
+    -moz-background-origin:padding;
+    background:#EEF3F5 url(images/bg_header.png) repeat-x scroll left top;    
     position: relative;
     margin-bottom: 0px;
     color: #000;
@@ -111,7 +115,7 @@ page width. Or, you can specify an exact pixel width. */
 
 #main
 {
-    padding: 30px 30px 15px 30px;
+    /*padding: 30px 30px 15px 30px;*/
     background-color: #fff;
     margin-bottom: 30px;
     _height: 1px; /* only IE6 applies CSS properties starting with an underscrore */
@@ -278,7 +282,6 @@ div#title
     font-size:1.1em;
     display:block;
     text-align:right;
-    margin:10px;
     color:White;
 }
 
@@ -315,4 +318,61 @@ div#title
 {
     font-weight: bold;
     color: #ff0000;
+}
+
+
+
+
+#menu-interno {
+    height:25px;
+    width:100%;
+}
+
+#sub-menu {
+float:left;
+height:25px;
+margin-left:20px;
+}
+
+#sub-menu ul {
+list-style-type:none;
+margin:0;
+padding:0;
+width:auto;
+}
+
+#sub-menu li {
+    float:left;
+}
+
+li {
+    list-style-image:none;
+    list-style-position:outside;
+    list-style-type:none;
+}
+
+#sub-menu  li a.active {
+    font-family:Verdana,Arial,Helvetica,sans-serif;
+    font-size:0.8em;
+    font-weight:bold;
+}
+
+#sub-menu  li a.active {
+    -moz-background-clip:border;
+    -moz-background-inline-policy:continuous;
+    -moz-background-origin:padding;
+    background:#EEF3F5 url(/images/bg_menu.png) repeat-x scroll left top;
+    color:#000000;
+}
+
+#sub-menu  li a.active {
+    display:inline;
+    float:left;
+    height:25px;
+    line-height:25px;
+    margin-right:6px;
+    padding:0 8px;
+    text-align:center;
+    text-decoration:none;
+    width:auto;
 }

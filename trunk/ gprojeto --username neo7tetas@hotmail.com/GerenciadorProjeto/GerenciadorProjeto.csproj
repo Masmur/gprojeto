@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{5D4B3D2D-59AA-41AA-81D5-EA22F2B46CF2}</ProjectGuid>
     <ProjectTypeGuids>{603c0e0b-db56-11dc-be95-000d561079b0};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -82,6 +82,7 @@
     <Content Include="App_Data\Projetos_log.ldf">
       <DependentUpon>Projetos.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\images\bg_header.png" />
     <Content Include="Content\jquery-ui-1.7.2.custom\css\start\images\ui-bg_flat_55_999999_40x100.png" />
     <Content Include="Content\jquery-ui-1.7.2.custom\css\start\images\ui-bg_flat_75_aaaaaa_40x100.png" />
     <Content Include="Content\jquery-ui-1.7.2.custom\css\start\images\ui-bg_glass_45_0078ae_1x400.png" />
@@ -391,6 +392,7 @@
     <Content Include="Global.asax" />
     <Content Include="Views\Empresa\Index.aspx" />
     <Content Include="Views\Produto\Create.ascx" />
+    <Content Include="Views\Produto\Details.aspx" />
     <Content Include="Views\Produto\Index.aspx" />
     <Content Include="Views\Produto\List.ascx" />
     <Content Include="Web.config" />
@@ -451,6 +453,9 @@
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

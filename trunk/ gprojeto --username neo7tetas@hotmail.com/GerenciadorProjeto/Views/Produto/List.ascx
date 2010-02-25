@@ -42,8 +42,8 @@
                 <%= Html.Encode(String.Format("{0:g}", item.Data)) %>
             </td>
             <td>
-                <%= Html.ActionLink("Editar", "Edit", new { id=item.ProdutoId }) %> |
-                <%= Html.ActionLink("Abrir", "Details", new { id=item.ProdutoId })%>
+                <%= Html.ActionLink("Editar", "Edit", new { ProdutoId=item.ProdutoId }) %> |
+                <%= Html.ActionLink("Abrir", "Details", new { ProdutoId=item.ProdutoId })%>
             </td>            
         </tr>
     
