@@ -21,7 +21,15 @@
 
         <div id="header">
             <div id="title">
-                <h1>My MVC Application</h1>
+                <% if (ViewData["titulo"] != null)
+                   {  %>
+                        <h1><%= ViewData["titulo"]%></h1>
+                <% }
+                   else
+                   {%>
+                    <h1>Secretaria de Estado da Saúde</h1>
+                <%} %>
+                
             </div>
               
             <div id="logindisplay">
@@ -29,13 +37,46 @@
             </div> 
             
             <div id="menucontainer">
-            
-                <ul id="menu">              
-                    <li><%= Html.ActionLink("Home", "Index", "Home")%></li>
-                    <li><%= Html.ActionLink("Produtos", "Index", "Produto")%></li>
-                    <li><%= Html.ActionLink("About", "About", "Home")%></li>
+                <ul id="menu">      
+                
+                    <% if (Html.IsCurrentAction("Home"))
+                       { %>
+                
+                        <% if (Html.IsCurrentAction("Index", "Home"))
+                           { %>
+                                <li class="selected"><%= Html.ActionLink("Home", "Index", "Home")%></li>
+                        <% }
+                           else
+                           { %>
+                            <li><%= Html.ActionLink("Home", "Index", "Home")%></li>
+                        <% }%>                
+
+
+                        <% if (Html.IsCurrentAction("Index", "Produto"))
+                           { %>
+                            <li class="selected"><%= Html.ActionLink("Produtos", "Index", "Produto")%></li>
+                        <% }
+                           else
+                           { %>
+                            <li><%= Html.ActionLink("Produtos", "Index", "Produto")%></li>
+                        <% }%>   
+
+
+                        <% if (Html.IsCurrentAction("About", "Home"))
+                           { %>
+                            <li class="selected"><%= Html.ActionLink("About", "About", "Home")%></li>
+                        <% }
+                           else
+                           { %>
+                            <li><%= Html.ActionLink("About", "About", "Home")%></li>
+                        <% }%>   
+                    <% }
+                       else
+                       { %>                           
+                            <li><%= Html.ActionLink("About", "About", "Home")%></li>
+                    <%} %>
                 </ul>
-            
+                
             </div>
         </div>
 

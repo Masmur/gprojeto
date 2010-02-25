@@ -69,6 +69,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\IsCurrentActionHelper.cs" />
     <Compile Include="Models\Model.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -82,7 +83,6 @@
     <Content Include="App_Data\Projetos_log.ldf">
       <DependentUpon>Projetos.mdf</DependentUpon>
     </Content>
-    <Content Include="Content\images\bg_header.png" />
     <Content Include="Content\jquery-ui-1.7.2.custom\css\start\images\ui-bg_flat_55_999999_40x100.png" />
     <Content Include="Content\jquery-ui-1.7.2.custom\css\start\images\ui-bg_flat_75_aaaaaa_40x100.png" />
     <Content Include="Content\jquery-ui-1.7.2.custom\css\start\images\ui-bg_glass_45_0078ae_1x400.png" />
