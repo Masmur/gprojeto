@@ -1,0 +1,5 @@
+C:\Users\Fagner\Desktop\GerenciadorProjeto\GerenciadorProjeto\bin\GerenciadorProjeto.dll
+C:\Users\Fagner\Desktop\GerenciadorProjeto\GerenciadorProjeto\bin\GerenciadorProjeto.pdb
+C:\Users\Fagner\Desktop\GerenciadorProjeto\GerenciadorProjeto\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Fagner\Desktop\GerenciadorProjeto\GerenciadorProjeto\obj\Debug\GerenciadorProjeto.dll
+C:\Users\Fagner\Desktop\GerenciadorProjeto\GerenciadorProjeto\obj\Debug\GerenciadorProjeto.pdb

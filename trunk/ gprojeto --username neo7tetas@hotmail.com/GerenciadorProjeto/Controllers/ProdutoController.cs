@@ -1,0 +1,98 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Mvc.Ajax;
+using GerenciadorProjeto.Models;
+
+namespace GerenciadorProjeto.Controllers
+{
+    public class ProdutoController : Controller
+    {
+        // Objeto que faz interação com o banco.
+        ModelDataContext _model = new ModelDataContext();
+
+        //
+        // GET: /Produto/
+
+        public ActionResult Index()
+        {
+            // Retorna lista de projetos da empresa na sessão.
+            return View(_model.Produtos.Where(p => p.EmpresaId == Convert.ToInt64(Session["EmpresaId"])));
+        }
+
+        //
+        // GET: /Produto/List
+        public ActionResult List()
+        {
+            // Retorna lista de projetos da empresa na sessão.
+            return PartialView("List",_model.Produtos.Where(p => p.EmpresaId == Convert.ToInt64(Session["EmpresaId"])));
+        }
+
+        //
+        // GET: /Produto/Details/5
+
+        public ActionResult Details(int id)
+        {
+            return View();
+        }
+
+        //
+        // GET: /Produto/Create
+
+        public ActionResult Create(int EmpresaId)
+        {
+            ViewData["EmpresaId"] = EmpresaId;
+            return PartialView("Create");
+        } 
+
+        //
+        // POST: /Produto/Create
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Create([Bind(Exclude="ProdutoId, Data")]Produto novoProduto)
+        {
+            try
+            {
+                // TODO: Add insert logic here
+
+                _model.Produtos.InsertOnSubmit(novoProduto);
+
+                _model.SubmitChanges();
+
+                return PartialView("List", _model.Produtos.Where(p => p.EmpresaId == Convert.ToInt64(Session["EmpresaId"])));
+            }
+            catch
+            {
+                return PartialView();
+            }
+        }
+
+        //
+        // GET: /Produto/Edit/5
+ 
+        public ActionResult Edit(int id)
+        {
+            return View();
+        }
+
+        //
+        // POST: /Produto/Edit/5
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Edit(int id, FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add update logic here
+ 
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+    }
+}
