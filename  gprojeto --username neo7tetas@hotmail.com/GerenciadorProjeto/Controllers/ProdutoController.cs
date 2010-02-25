@@ -33,9 +33,10 @@ namespace GerenciadorProjeto.Controllers
         //
         // GET: /Produto/Details/5
 
-        public ActionResult Details(int id)
+        public ActionResult Details(int ProdutoId)
         {
-            return View();
+            // Retornar o Produto informado no cabeçalho da função.
+            return View(_model.Produtos.Where(p => p.ProdutoId == ProdutoId).First());
         }
 
         //
@@ -65,7 +66,7 @@ namespace GerenciadorProjeto.Controllers
             }
             catch
             {
-                return PartialView();
+                return PartialView("List", _model.Produtos.Where(p => p.EmpresaId == Convert.ToInt64(Session["EmpresaId"])));
             }
         }
 
