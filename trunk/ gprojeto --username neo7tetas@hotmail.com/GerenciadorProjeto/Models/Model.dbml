@@ -5,8 +5,8 @@
     <Type Name="Empresa">
       <Column Name="EmpresaId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Nome" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="Empresa_Colaborador" Member="Colaboradors" OtherKey="EmpresaId" Type="Colaborador" />
-      <Association Name="Empresa_Produto" Member="Produtos" OtherKey="EmpresaId" Type="Produto" />
+      <Association Name="Empresa_Colaborador" Member="Colaboradors" ThisKey="EmpresaId" OtherKey="EmpresaId" Type="Colaborador" />
+      <Association Name="Empresa_Produto" Member="Produtos" ThisKey="EmpresaId" OtherKey="EmpresaId" Type="Produto" />
     </Type>
   </Table>
   <Table Name="dbo.Colaboradores" Member="Colaboradors">
@@ -14,7 +14,7 @@
       <Column Name="ColaboradoId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="EmpresaId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="Nome" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="Empresa_Colaborador" Member="Empresa" ThisKey="EmpresaId" Type="Empresa" IsForeignKey="true" />
+      <Association Name="Empresa_Colaborador" Member="Empresa" ThisKey="EmpresaId" OtherKey="EmpresaId" Type="Empresa" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Sprint" Member="Sprints">
@@ -23,8 +23,8 @@
       <Column Name="ProdutoId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="Objetivo" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="Data" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
-      <Association Name="Sprint_SprintBackLog" Member="SprintBackLogs" OtherKey="SprintId" Type="SprintBackLog" />
-      <Association Name="Produto_Sprint" Member="Produto" ThisKey="ProdutoId" Type="Produto" IsForeignKey="true" />
+      <Association Name="Sprint_SprintBackLog" Member="SprintBackLogs" ThisKey="SprintId" OtherKey="SprintId" Type="SprintBackLog" />
+      <Association Name="Produto_Sprint" Member="Produto" ThisKey="ProdutoId" OtherKey="ProdutoId" Type="Produto" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.BacklogItem" Member="BacklogItems">
@@ -33,18 +33,18 @@
       <Column Name="ProdutoId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="Nome" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Nota" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="Data" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Data" AutoSync="Never" Type="System.DateTime" DbType="SmallDateTime NOT NULL" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Estimativa" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Association Name="BacklogItem_SprintBackLog" Member="SprintBackLogs" OtherKey="BacklogItemId" Type="SprintBackLog" />
-      <Association Name="Produto_BacklogItem" Member="Produto" ThisKey="ProdutoId" Type="Produto" IsForeignKey="true" />
+      <Association Name="BacklogItem_SprintBackLog" Member="SprintBackLogs" ThisKey="BacklogItemId" OtherKey="BacklogItemId" Type="SprintBackLog" />
+      <Association Name="Produto_BacklogItem" Member="Produto" ThisKey="ProdutoId" OtherKey="ProdutoId" Type="Produto" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.SprintBackLog" Member="SprintBackLogs">
     <Type Name="SprintBackLog">
       <Column Name="SprintId" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="BacklogItemId" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="BacklogItem_SprintBackLog" Member="BacklogItem" ThisKey="BacklogItemId" Type="BacklogItem" IsForeignKey="true" />
-      <Association Name="Sprint_SprintBackLog" Member="Sprint" ThisKey="SprintId" Type="Sprint" IsForeignKey="true" />
+      <Association Name="BacklogItem_SprintBackLog" Member="BacklogItem" ThisKey="BacklogItemId" OtherKey="BacklogItemId" Type="BacklogItem" IsForeignKey="true" />
+      <Association Name="Sprint_SprintBackLog" Member="Sprint" ThisKey="SprintId" OtherKey="SprintId" Type="Sprint" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Produtos" Member="Produtos">
@@ -53,9 +53,9 @@
       <Column Name="EmpresaId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="Nome" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Data" AutoSync="Never" Type="System.DateTime" DbType="SmallDateTime NOT NULL" IsDbGenerated="true" CanBeNull="false" />
-      <Association Name="Produto_Sprint" Member="Sprints" OtherKey="ProdutoId" Type="Sprint" />
-      <Association Name="Produto_BacklogItem" Member="BacklogItems" OtherKey="ProdutoId" Type="BacklogItem" />
-      <Association Name="Empresa_Produto" Member="Empresa" ThisKey="EmpresaId" Type="Empresa" IsForeignKey="true" />
+      <Association Name="Produto_Sprint" Member="Sprints" ThisKey="ProdutoId" OtherKey="ProdutoId" Type="Sprint" />
+      <Association Name="Produto_BacklogItem" Member="BacklogItems" ThisKey="ProdutoId" OtherKey="ProdutoId" Type="BacklogItem" />
+      <Association Name="Empresa_Produto" Member="Empresa" ThisKey="EmpresaId" OtherKey="EmpresaId" Type="Empresa" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

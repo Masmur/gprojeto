@@ -19,7 +19,6 @@ namespace GerenciadorProjeto.Controllers
         public ActionResult Index()
         {
             // Retorna lista de projetos da empresa na sessão.
-            ViewData["titulo"] = "Projetos";
             return View(_model.Produtos.Where(p => p.EmpresaId == Convert.ToInt64(Session["EmpresaId"])));
         }
 
@@ -37,7 +36,10 @@ namespace GerenciadorProjeto.Controllers
         public ActionResult Details(int ProdutoId)
         {
             // Retornar o Produto informado no cabeçalho da função.
-            return View(_model.Produtos.Where(p => p.ProdutoId == ProdutoId).First());
+            var produtoToDetail = _model.Produtos.Where(p => p.ProdutoId == ProdutoId).First();
+            ViewData["ProdutoId"] = ProdutoId;
+            ViewData["titulo"] = produtoToDetail.Nome;
+            return View(produtoToDetail);
         }
 
         //
@@ -58,7 +60,7 @@ namespace GerenciadorProjeto.Controllers
             try
             {
                 // TODO: Add insert logic here
-
+                ViewData["EmpresaId"] = novoProduto.EmpresaId;
                 _model.Produtos.InsertOnSubmit(novoProduto);
 
                 _model.SubmitChanges();
@@ -74,7 +76,7 @@ namespace GerenciadorProjeto.Controllers
         //
         // GET: /Produto/Edit/5
  
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int ProdutoId)
         {
             return View();
         }
@@ -83,7 +85,7 @@ namespace GerenciadorProjeto.Controllers
         // POST: /Produto/Edit/5
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int ProdutoId, FormCollection collection)
         {
             try
             {

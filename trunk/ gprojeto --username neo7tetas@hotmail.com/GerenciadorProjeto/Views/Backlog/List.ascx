@@ -1,14 +1,14 @@
-<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<IEnumerable<GerenciadorProjeto.Models.Produto>>" %>
+<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<IEnumerable<GerenciadorProjeto.Models.BacklogItem>>" %>
 <p>
-    <%= Ajax.ActionLink("Adicionar", "Create", new { EmpresaId = Convert.ToInt64(Session["EmpresaId"]) },
+    <%= Ajax.ActionLink("Adicionar", "Create", new { ProdutoId = ViewData["ProdutoId"] },
                                                 new AjaxOptions
                                                 {
                                                     HttpMethod = "GET",
                                                     InsertionMode = InsertionMode.Replace,
-                                                    UpdateTargetId = "formCreateProduto"
+                                                    UpdateTargetId = "formCreateBackLog"
                                                 })%>
-</p>                                            
-<div id="formCreateProduto">
+</p>      
+<div id="formCreateBackLog">
 </div>
     <table>
         <tr>
@@ -19,26 +19,38 @@
                 Nome
             </th>
             <th>
+                Nota
+            </th>
+            <th>
                 Data
             </th>
-            <th>Ações</th>            
+            <th>
+                Estimativa
+            </th>
+            <th></th>            
         </tr>
 
     <% foreach (var item in Model) { %>
     
         <tr>
             <td>
-                <%= Html.Encode(item.ProdutoId) %>
+                <%= Html.Encode(item.BacklogItemId) %>
             </td>
             <td>
                 <%= Html.Encode(item.Nome) %>
             </td>
             <td>
+                <%= Html.Encode(item.Nota) %>
+            </td>
+            <td>
                 <%= Html.Encode(String.Format("{0:g}", item.Data)) %>
             </td>
             <td>
-                <%= Html.ActionLink("Editar", "Edit", new { ProdutoId=item.ProdutoId }) %> |
-                <%= Html.ActionLink("Abrir", "Details", new { ProdutoId=item.ProdutoId })%>
+                <%= Html.Encode(String.Format("{0:F}", item.Estimativa)) %>
+            </td>
+            <td>
+                <%= Html.ActionLink("Edit", "Edit", new { id=item.BacklogItemId }) %> |
+                <%= Html.ActionLink("Details", "Details", new { id=item.BacklogItemId })%>
             </td>            
         </tr>
     
