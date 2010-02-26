@@ -78,14 +78,20 @@ namespace GerenciadorProjeto.Controllers
  
         public ActionResult Edit(int ProdutoId)
         {
-            return View();
+            var produtoToEdit = (from m in _model.Produtos
+                                 where m.ProdutoId == ProdutoId
+                                 select m);
+
+
+
+            return PartialView(produtoToEdit);
         }
 
         //
         // POST: /Produto/Edit/5
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Edit(int ProdutoId, FormCollection collection)
+        public ActionResult Edit(Produto produtoToEdit)
         {
             try
             {
