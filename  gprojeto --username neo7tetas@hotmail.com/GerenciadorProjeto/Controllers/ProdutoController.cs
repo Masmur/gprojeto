@@ -78,11 +78,11 @@ namespace GerenciadorProjeto.Controllers
  
         public ActionResult Edit(int ProdutoId)
         {
-            var produtoToEdit = (from m in _model.Produtos
+            var produtoToEdit =  (from m in _model.Produtos
                                  where m.ProdutoId == ProdutoId
-                                 select m);
+                                 select m).FirstOrDefault();
 
-
+            ViewData["EmpresaId"] = produtoToEdit.EmpresaId;
 
             return PartialView(produtoToEdit);
         }
@@ -91,17 +91,27 @@ namespace GerenciadorProjeto.Controllers
         // POST: /Produto/Edit/5
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Edit(Produto produtoToEdit)
+        public ActionResult Edit(int ProdutoId,Produto produtoEdited)
         {
             try
             {
                 // TODO: Add update logic here
- 
-                return RedirectToAction("Index");
+
+                var produtoToEdit = (from m in _model.Produtos
+                                     where m.ProdutoId == ProdutoId
+                                     select m).FirstOrDefault();
+
+                produtoToEdit = produtoEdited;
+
+                ViewData["EmpresaId"] = produtoEdited.EmpresaId;
+
+                _model.SubmitChanges();
+
+                return PartialView("List", _model.Produtos.Where(p => p.EmpresaId == Convert.ToInt64(Session["EmpresaId"])));
             }
             catch
             {
-                return View();
+                return PartialView("List", _model.Produtos.Where(p => p.EmpresaId == Convert.ToInt64(Session["EmpresaId"])));
             }
         }
     }

@@ -464,3 +464,19 @@ ul {
     margin:10px;
     padding:0;
 }
+
+.innerContainer {
+    -moz-background-clip:border;
+    -moz-background-inline-policy:continuous;
+    -moz-background-origin:padding;
+    -moz-border-radius-bottomleft:8px;
+    -moz-border-radius-bottomright:8px;
+    /*background:#EDF8E7 url(/images/bg_form_inline.png) repeat-x scroll left top;*/
+    border-color:-moz-use-text-color #EFF4FA #EFF4FA;
+    border-style:none solid solid;
+    border-width:medium 2px 2px 1px;
+    margin-left:20px;
+    margin-right:10px;
+    padding:5px 10px 10px;
+    height:auto;
+}

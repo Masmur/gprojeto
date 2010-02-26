@@ -13,8 +13,8 @@
     </div>    
 </div>                                           
     <% foreach (var item in Model) { %>
-    <ul>
-        <li id="produtos">
+    <ul id="produtos">
+        <li id=id="conteiner_produto_<%= item.ProdutoId.ToString() %>">
             <div class="itemContainer">
                 <div class="leftContainer lastContainer">
                     <label title="<%= Html.Encode(item.Nome)%>" >
@@ -23,13 +23,20 @@
                 </div>
                 <ul class="rightContainer">
                     <li>
-                        <%= Html.ActionLink("Editar", "Edit", new { ProdutoId = item.ProdutoId }, new { Class = "radiusMenu"})%>
-                    </li>
-                    <li>
                         <%= Html.ActionLink("Abrir", "Details", new { ProdutoId = item.ProdutoId }, new { Class = "radiusMenu" })%>                                    
                     </li>
+                    <li>
+                        <%= Ajax.ActionLink("Editar", "Edit", "Produto",    new { ProdutoId = item.ProdutoId },
+                                                                            new AjaxOptions {   HttpMethod = "GET",
+                                                                                                InsertionMode = InsertionMode.Replace,
+                                                                                                UpdateTargetId = "container_formEdit_produto_" + item.ProdutoId.ToString()
+                                                                            },
+                                                                            new { Class = "radiusMenu" })%>
+                    </li>
                 </ul>
-            </div>            
+            </div>
+            <div id="container_formEdit_produto_<%= item.ProdutoId.ToString() %>">
+            </div>           
         </li>
     </ul>
     <% } %>
