@@ -8,8 +8,8 @@
        {%>
 
         <fieldset>
-            <legend>Fields</legend>
-                <%= Html.Hidden("EmpresaId", ViewData["EmpresaID"])%>
+            <legend>Adicionar Produto</legend>
+                <%= Html.Hidden("EmpresaId", ViewData["EmpresaId"])%>
             <p>
                 <label for="Nome">Nome:</label>
                 <%= Html.TextBox("Nome")%>

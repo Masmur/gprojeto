@@ -39,18 +39,17 @@
             <div id="menucontainer">
                 <ul id="menu">      
                 
-                    <% if (Html.IsCurrentAction("Home"))
+                    <% if (Html.IsCurrentAction("Home") || Html.IsCurrentAction("Index", "Produto"))
                        { %>
                 
                         <% if (Html.IsCurrentAction("Index", "Home"))
                            { %>
-                                <li class="selected"><%= Html.ActionLink("Home", "Index", "Home")%></li>
+                                <li class="selected"><%= Html.ActionLink("Dashboard", "Index", "Home")%></li>
                         <% }
                            else
                            { %>
-                            <li><%= Html.ActionLink("Home", "Index", "Home")%></li>
+                            <li><%= Html.ActionLink("Dashboard", "Index", "Home")%></li>
                         <% }%>                
-
 
                         <% if (Html.IsCurrentAction("Index", "Produto"))
                            { %>
@@ -61,22 +60,61 @@
                             <li><%= Html.ActionLink("Produtos", "Index", "Produto")%></li>
                         <% }%>   
 
-
-                        <% if (Html.IsCurrentAction("About", "Home"))
+                        <% if (Html.IsCurrentAction("Colaboradores", "Home"))
                            { %>
-                            <li class="selected"><%= Html.ActionLink("About", "About", "Home")%></li>
+                            <li class="selected"><%= Html.ActionLink("Colaboradores", "Index", "Home")%></li>
                         <% }
                            else
                            { %>
-                            <li><%= Html.ActionLink("About", "About", "Home")%></li>
+                            <li><%= Html.ActionLink("Colaboradores", "Index", "Colaboradores")%></li>
+                        <% }%>  
+
+
+                        <% if (Html.IsCurrentAction("Sprints", "Home"))
+                           { %>
+                            <li class="selected"><%= Html.ActionLink("Sprints", "Index", "Sprints")%></li>
+                        <% }
+                           else
+                           { %>
+                            <li><%= Html.ActionLink("Sprints", "Index", "Sprints")%></li>
+                        <% }%>  
+
+
+                        <% if (Html.IsCurrentAction("About", "Home"))
+                           { %>
+                            <li class="selected"><%= Html.ActionLink("About", "About", "Colaboradores")%></li>
+                        <% }
+                           else
+                           { %>
+                            <li><%= Html.ActionLink("About", "About", "Colaboradores")%></li>
+                        <% }%>  
+                        
+                    <% } %>  
+                    
+                    <% if (Html.IsCurrentAction("Details", "Produto") || Html.IsCurrentAction("Index", "Backlog"))
+                       { %>
+
+                        <% if (Html.IsCurrentAction("Details", "Produto"))
+                           { %>
+                            <li class="selected"><%= Html.ActionLink("Visão Geral", "Details", "Produto", new { ProdutoId = ViewData["ProdutoId"] }, new { Class = "" })%></li>
+                        <% }
+                           else
+                           { %>
+                            <li><%= Html.ActionLink("Visão Geral", "Details","Produto", new { ProdutoId = ViewData["ProdutoId"] }, new { Class = "" })%></li>
                         <% }%>   
-                    <% }
-                       else
-                       { %>                           
-                            <li><%= Html.ActionLink("About", "About", "Home")%></li>
-                    <%} %>
+
+                        <% if (Html.IsCurrentAction("Index", "Backlog"))
+                           { %>
+                            <li class="selected"><%= Html.ActionLink("Backlog", "Index", "Backlog", new { ProdutoId = ViewData["ProdutoId"] }, new { Class = "" })%></li>
+                        <% }
+                           else
+                           { %>
+                            <li><%= Html.ActionLink("Backlog", "Index", "Backlog", new { ProdutoId = ViewData["ProdutoId"] }, new { Class = "" })%></li>
+                        <% }%>  
+                         
+                    <% } %>                    
+                                      
                 </ul>
-                
             </div>
         </div>
 
