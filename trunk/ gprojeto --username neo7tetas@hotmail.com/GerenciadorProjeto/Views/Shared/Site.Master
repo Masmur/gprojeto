@@ -82,11 +82,11 @@
 
                         <% if (Html.IsCurrentAction("About", "Home"))
                            { %>
-                            <li class="selected"><%= Html.ActionLink("About", "About", "Colaboradores")%></li>
+                            <li class="selected"><%= Html.ActionLink("About", "About", "Home")%></li>
                         <% }
                            else
                            { %>
-                            <li><%= Html.ActionLink("About", "About", "Colaboradores")%></li>
+                            <li><%= Html.ActionLink("About", "About", "Home")%></li>
                         <% }%>  
                         
                     <% } %>  

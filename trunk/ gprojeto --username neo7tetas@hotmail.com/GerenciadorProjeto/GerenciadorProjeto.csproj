@@ -92,6 +92,7 @@
     <Content Include="Views\Empresa\Index.aspx" />
     <Content Include="Views\Produto\Create.ascx" />
     <Content Include="Views\Produto\Details.aspx" />
+    <Content Include="Views\Produto\Edit.ascx" />
     <Content Include="Views\Produto\Index.aspx" />
     <Content Include="Views\Produto\List.ascx" />
     <Content Include="Web.config" />

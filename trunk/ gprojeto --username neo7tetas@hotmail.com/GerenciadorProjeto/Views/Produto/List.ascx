@@ -1,49 +1,36 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<IEnumerable<GerenciadorProjeto.Models.Produto>>" %>
-<p>
-    <%= Ajax.ActionLink("Adicionar", "Create", new { EmpresaId = Convert.ToInt64(Session["EmpresaId"]) },
-                                                new AjaxOptions
-                                                {
-                                                    HttpMethod = "GET",
-                                                    InsertionMode = InsertionMode.Replace,
-                                                    UpdateTargetId = "formCreateProduto"
-                                                })%>
-</p>                                            
-<div id="formCreateProduto">
-</div>
-    <table>
-        <tr>
-            <th>
-                ID
-            </th>
-            <th>
-                Nome
-            </th>
-            <th>
-                Data
-            </th>
-            <th>Ações</th>            
-        </tr>
-
+<div class="pageActions">
+    <p>
+        <%= Ajax.ActionLink("Adicionar", "Create", new { EmpresaId = Convert.ToInt64(Session["EmpresaId"]) },
+                                                    new AjaxOptions
+                                                    {
+                                                        HttpMethod = "GET",
+                                                        InsertionMode = InsertionMode.Replace,
+                                                        UpdateTargetId = "formCreateProduto"
+                                                    })%>
+    </p> 
+    <div id="formCreateProduto">
+    </div>    
+</div>                                           
     <% foreach (var item in Model) { %>
-    
-        <tr>
-            <td>
-                <%= Html.Encode(item.ProdutoId) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.Nome) %>
-            </td>
-            <td>
-                <%= Html.Encode(String.Format("{0:g}", item.Data)) %>
-            </td>
-            <td>
-                <%= Html.ActionLink("Editar", "Edit", new { ProdutoId=item.ProdutoId }) %> |
-                <%= Html.ActionLink("Abrir", "Details", new { ProdutoId=item.ProdutoId })%>
-            </td>            
-        </tr>
-    
+    <ul>
+        <li id="produtos">
+            <div class="itemContainer">
+                <div class="leftContainer lastContainer">
+                    <label title="<%= Html.Encode(item.Nome)%>" >
+                        <%= Html.Encode(item.Nome)%>
+                    </label>       
+                </div>
+                <ul class="rightContainer">
+                    <li>
+                        <%= Html.ActionLink("Editar", "Edit", new { ProdutoId = item.ProdutoId }, new { Class = "radiusMenu"})%>
+                    </li>
+                    <li>
+                        <%= Html.ActionLink("Abrir", "Details", new { ProdutoId = item.ProdutoId }, new { Class = "radiusMenu" })%>                                    
+                    </li>
+                </ul>
+            </div>            
+        </li>
+    </ul>
     <% } %>
-
-    </table>
-
 
