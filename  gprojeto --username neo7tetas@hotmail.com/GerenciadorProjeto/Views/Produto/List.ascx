@@ -33,6 +33,15 @@
                                                                             },
                                                                             new { Class = "radiusMenu" })%>
                     </li>
+                    <li>
+                        <%= Ajax.ActionLink("Apagar", "Delete", "Produto",  new { ProdutoId = item.ProdutoId },
+                                                                            new AjaxOptions {   Confirm = "Confirma a deleção??",
+                                                                                                HttpMethod = "POST",
+                                                                                                InsertionMode = InsertionMode.Replace,
+                                                                                                UpdateTargetId = "listProduto"
+                                                                            },
+                                                                            new { Class = "radiusMenu" })%>
+                    </li>
                 </ul>
             </div>
             <div id="container_formEdit_produto_<%= item.ProdutoId.ToString() %>">
