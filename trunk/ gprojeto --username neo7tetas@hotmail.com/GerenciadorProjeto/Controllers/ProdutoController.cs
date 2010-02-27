@@ -91,19 +91,19 @@ namespace GerenciadorProjeto.Controllers
         // POST: /Produto/Edit/5
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Edit(int ProdutoId,Produto produtoEdited)
+        public ActionResult Edit(int produtoId, Produto produtoEdited)
         {
             try
             {
                 // TODO: Add update logic here
 
-                var produtoToEdit = (from m in _model.Produtos
-                                     where m.ProdutoId == ProdutoId
-                                     select m).FirstOrDefault();
-
-                produtoToEdit = produtoEdited;
-
                 ViewData["EmpresaId"] = produtoEdited.EmpresaId;
+                if (!ModelState.IsValid)
+                {
+                    return PartialView("List", _model.Produtos.Where(p => p.EmpresaId == Convert.ToInt64(Session["EmpresaId"])));
+                }
+
+                _model.Produtos.First(p => p.ProdutoId == produtoId).Nome = produtoEdited.Nome;
 
                 _model.SubmitChanges();
 
@@ -113,6 +113,17 @@ namespace GerenciadorProjeto.Controllers
             {
                 return PartialView("List", _model.Produtos.Where(p => p.EmpresaId == Convert.ToInt64(Session["EmpresaId"])));
             }
+        }
+
+        //
+        // POST: /Produto/Delete/5
+        public ActionResult Delete(int ProdutoId)
+        {
+            _model.Produtos.DeleteOnSubmit(_model.Produtos.First(p => p.ProdutoId == ProdutoId));
+
+            _model.SubmitChanges();
+
+            return PartialView("List", _model.Produtos.Where(p => p.EmpresaId == Convert.ToInt64(Session["EmpresaId"])));
         }
     }
 }
