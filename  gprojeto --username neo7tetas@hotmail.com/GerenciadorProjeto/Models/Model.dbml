@@ -5,16 +5,8 @@
     <Type Name="Empresa">
       <Column Name="EmpresaId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Nome" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="Empresa_Colaborador" Member="Colaboradors" ThisKey="EmpresaId" OtherKey="EmpresaId" Type="Colaborador" />
       <Association Name="Empresa_Produto" Member="Produtos" ThisKey="EmpresaId" OtherKey="EmpresaId" Type="Produto" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Colaboradores" Member="Colaboradors">
-    <Type Name="Colaborador">
-      <Column Name="ColaboradoId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="EmpresaId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Column Name="Nome" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="Empresa_Colaborador" Member="Empresa" ThisKey="EmpresaId" OtherKey="EmpresaId" Type="Empresa" IsForeignKey="true" />
+      <Association Name="Empresa_Colaboradore" Member="Colaboradors" ThisKey="EmpresaId" OtherKey="EmpresaId" Type="Colaborador" />
     </Type>
   </Table>
   <Table Name="dbo.Sprint" Member="Sprints">
@@ -56,6 +48,14 @@
       <Association Name="Produto_Sprint" Member="Sprints" ThisKey="ProdutoId" OtherKey="ProdutoId" Type="Sprint" />
       <Association Name="Produto_BacklogItem" Member="BacklogItems" ThisKey="ProdutoId" OtherKey="ProdutoId" Type="BacklogItem" />
       <Association Name="Empresa_Produto" Member="Empresa" ThisKey="EmpresaId" OtherKey="EmpresaId" Type="Empresa" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Colaboradores" Member="Colaboradors">
+    <Type Name="Colaborador">
+      <Column Name="ColaboradorId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EmpresaId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Nome" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Empresa_Colaboradore" Member="Empresa" ThisKey="EmpresaId" OtherKey="EmpresaId" Type="Empresa" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
