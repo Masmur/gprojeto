@@ -33,9 +33,6 @@ namespace GerenciadorProjeto.Models
     partial void InsertEmpresa(Empresa instance);
     partial void UpdateEmpresa(Empresa instance);
     partial void DeleteEmpresa(Empresa instance);
-    partial void InsertColaborador(Colaborador instance);
-    partial void UpdateColaborador(Colaborador instance);
-    partial void DeleteColaborador(Colaborador instance);
     partial void InsertSprint(Sprint instance);
     partial void UpdateSprint(Sprint instance);
     partial void DeleteSprint(Sprint instance);
@@ -48,6 +45,9 @@ namespace GerenciadorProjeto.Models
     partial void InsertProduto(Produto instance);
     partial void UpdateProduto(Produto instance);
     partial void DeleteProduto(Produto instance);
+    partial void InsertColaborador(Colaborador instance);
+    partial void UpdateColaborador(Colaborador instance);
+    partial void DeleteColaborador(Colaborador instance);
     #endregion
 		
 		public ModelDataContext() : 
@@ -88,14 +88,6 @@ namespace GerenciadorProjeto.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<Colaborador> Colaboradors
-		{
-			get
-			{
-				return this.GetTable<Colaborador>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Sprint> Sprints
 		{
 			get
@@ -127,6 +119,14 @@ namespace GerenciadorProjeto.Models
 				return this.GetTable<Produto>();
 			}
 		}
+		
+		public System.Data.Linq.Table<Colaborador> Colaboradors
+		{
+			get
+			{
+				return this.GetTable<Colaborador>();
+			}
+		}
 	}
 	
 	[Table(Name="dbo.Empresas")]
@@ -139,9 +139,9 @@ namespace GerenciadorProjeto.Models
 		
 		private string _Nome;
 		
-		private EntitySet<Colaborador> _Colaboradors;
-		
 		private EntitySet<Produto> _Produtos;
+		
+		private EntitySet<Colaborador> _Colaboradors;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -155,8 +155,8 @@ namespace GerenciadorProjeto.Models
 		
 		public Empresa()
 		{
-			this._Colaboradors = new EntitySet<Colaborador>(new Action<Colaborador>(this.attach_Colaboradors), new Action<Colaborador>(this.detach_Colaboradors));
 			this._Produtos = new EntitySet<Produto>(new Action<Produto>(this.attach_Produtos), new Action<Produto>(this.detach_Produtos));
+			this._Colaboradors = new EntitySet<Colaborador>(new Action<Colaborador>(this.attach_Colaboradors), new Action<Colaborador>(this.detach_Colaboradors));
 			OnCreated();
 		}
 		
@@ -200,19 +200,6 @@ namespace GerenciadorProjeto.Models
 			}
 		}
 		
-		[Association(Name="Empresa_Colaborador", Storage="_Colaboradors", ThisKey="EmpresaId", OtherKey="EmpresaId")]
-		public EntitySet<Colaborador> Colaboradors
-		{
-			get
-			{
-				return this._Colaboradors;
-			}
-			set
-			{
-				this._Colaboradors.Assign(value);
-			}
-		}
-		
 		[Association(Name="Empresa_Produto", Storage="_Produtos", ThisKey="EmpresaId", OtherKey="EmpresaId")]
 		public EntitySet<Produto> Produtos
 		{
@@ -226,6 +213,19 @@ namespace GerenciadorProjeto.Models
 			}
 		}
 		
+		[Association(Name="Empresa_Colaboradore", Storage="_Colaboradors", ThisKey="EmpresaId", OtherKey="EmpresaId")]
+		public EntitySet<Colaborador> Colaboradors
+		{
+			get
+			{
+				return this._Colaboradors;
+			}
+			set
+			{
+				this._Colaboradors.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -244,18 +244,6 @@ namespace GerenciadorProjeto.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_Colaboradors(Colaborador entity)
-		{
-			this.SendPropertyChanging();
-			entity.Empresa = this;
-		}
-		
-		private void detach_Colaboradors(Colaborador entity)
-		{
-			this.SendPropertyChanging();
-			entity.Empresa = null;
 		}
 		
 		private void attach_Produtos(Produto entity)
@@ -269,156 +257,17 @@ namespace GerenciadorProjeto.Models
 			this.SendPropertyChanging();
 			entity.Empresa = null;
 		}
-	}
-	
-	[Table(Name="dbo.Colaboradores")]
-	public partial class Colaborador : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private long _ColaboradoId;
-		
-		private long _EmpresaId;
-		
-		private string _Nome;
-		
-		private EntityRef<Empresa> _Empresa;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnColaboradoIdChanging(long value);
-    partial void OnColaboradoIdChanged();
-    partial void OnEmpresaIdChanging(long value);
-    partial void OnEmpresaIdChanged();
-    partial void OnNomeChanging(string value);
-    partial void OnNomeChanged();
-    #endregion
-		
-		public Colaborador()
+		private void attach_Colaboradors(Colaborador entity)
 		{
-			this._Empresa = default(EntityRef<Empresa>);
-			OnCreated();
+			this.SendPropertyChanging();
+			entity.Empresa = this;
 		}
 		
-		[Column(Storage="_ColaboradoId", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public long ColaboradoId
+		private void detach_Colaboradors(Colaborador entity)
 		{
-			get
-			{
-				return this._ColaboradoId;
-			}
-			set
-			{
-				if ((this._ColaboradoId != value))
-				{
-					this.OnColaboradoIdChanging(value);
-					this.SendPropertyChanging();
-					this._ColaboradoId = value;
-					this.SendPropertyChanged("ColaboradoId");
-					this.OnColaboradoIdChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_EmpresaId", DbType="BigInt NOT NULL")]
-		public long EmpresaId
-		{
-			get
-			{
-				return this._EmpresaId;
-			}
-			set
-			{
-				if ((this._EmpresaId != value))
-				{
-					if (this._Empresa.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnEmpresaIdChanging(value);
-					this.SendPropertyChanging();
-					this._EmpresaId = value;
-					this.SendPropertyChanged("EmpresaId");
-					this.OnEmpresaIdChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Nome", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Nome
-		{
-			get
-			{
-				return this._Nome;
-			}
-			set
-			{
-				if ((this._Nome != value))
-				{
-					this.OnNomeChanging(value);
-					this.SendPropertyChanging();
-					this._Nome = value;
-					this.SendPropertyChanged("Nome");
-					this.OnNomeChanged();
-				}
-			}
-		}
-		
-		[Association(Name="Empresa_Colaborador", Storage="_Empresa", ThisKey="EmpresaId", OtherKey="EmpresaId", IsForeignKey=true)]
-		public Empresa Empresa
-		{
-			get
-			{
-				return this._Empresa.Entity;
-			}
-			set
-			{
-				Empresa previousValue = this._Empresa.Entity;
-				if (((previousValue != value) 
-							|| (this._Empresa.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Empresa.Entity = null;
-						previousValue.Colaboradors.Remove(this);
-					}
-					this._Empresa.Entity = value;
-					if ((value != null))
-					{
-						value.Colaboradors.Add(this);
-						this._EmpresaId = value.EmpresaId;
-					}
-					else
-					{
-						this._EmpresaId = default(long);
-					}
-					this.SendPropertyChanged("Empresa");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
+			this.SendPropertyChanging();
+			entity.Empresa = null;
 		}
 	}
 	
@@ -1272,6 +1121,157 @@ namespace GerenciadorProjeto.Models
 		{
 			this.SendPropertyChanging();
 			entity.Produto = null;
+		}
+	}
+	
+	[Table(Name="dbo.Colaboradores")]
+	public partial class Colaborador : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _ColaboradorId;
+		
+		private long _EmpresaId;
+		
+		private string _Nome;
+		
+		private EntityRef<Empresa> _Empresa;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnColaboradorIdChanging(long value);
+    partial void OnColaboradorIdChanged();
+    partial void OnEmpresaIdChanging(long value);
+    partial void OnEmpresaIdChanged();
+    partial void OnNomeChanging(string value);
+    partial void OnNomeChanged();
+    #endregion
+		
+		public Colaborador()
+		{
+			this._Empresa = default(EntityRef<Empresa>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_ColaboradorId", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long ColaboradorId
+		{
+			get
+			{
+				return this._ColaboradorId;
+			}
+			set
+			{
+				if ((this._ColaboradorId != value))
+				{
+					this.OnColaboradorIdChanging(value);
+					this.SendPropertyChanging();
+					this._ColaboradorId = value;
+					this.SendPropertyChanged("ColaboradorId");
+					this.OnColaboradorIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_EmpresaId", DbType="BigInt NOT NULL")]
+		public long EmpresaId
+		{
+			get
+			{
+				return this._EmpresaId;
+			}
+			set
+			{
+				if ((this._EmpresaId != value))
+				{
+					if (this._Empresa.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnEmpresaIdChanging(value);
+					this.SendPropertyChanging();
+					this._EmpresaId = value;
+					this.SendPropertyChanged("EmpresaId");
+					this.OnEmpresaIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Nome", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Nome
+		{
+			get
+			{
+				return this._Nome;
+			}
+			set
+			{
+				if ((this._Nome != value))
+				{
+					this.OnNomeChanging(value);
+					this.SendPropertyChanging();
+					this._Nome = value;
+					this.SendPropertyChanged("Nome");
+					this.OnNomeChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Empresa_Colaboradore", Storage="_Empresa", ThisKey="EmpresaId", OtherKey="EmpresaId", IsForeignKey=true)]
+		public Empresa Empresa
+		{
+			get
+			{
+				return this._Empresa.Entity;
+			}
+			set
+			{
+				Empresa previousValue = this._Empresa.Entity;
+				if (((previousValue != value) 
+							|| (this._Empresa.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Empresa.Entity = null;
+						previousValue.Colaboradors.Remove(this);
+					}
+					this._Empresa.Entity = value;
+					if ((value != null))
+					{
+						value.Colaboradors.Add(this);
+						this._EmpresaId = value.EmpresaId;
+					}
+					else
+					{
+						this._EmpresaId = default(long);
+					}
+					this.SendPropertyChanged("Empresa");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

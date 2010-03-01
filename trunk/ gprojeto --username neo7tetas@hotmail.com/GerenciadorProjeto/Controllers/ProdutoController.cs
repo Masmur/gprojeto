@@ -26,7 +26,7 @@ namespace GerenciadorProjeto.Controllers
         // GET: /Produto/List
         public ActionResult List()
         {
-            // Retorna lista de projetos da empresa na sessão.
+            // Retorna lista.
             return PartialView("List",_model.Produtos.Where(p => p.EmpresaId == Convert.ToInt64(Session["EmpresaId"])));
         }
 

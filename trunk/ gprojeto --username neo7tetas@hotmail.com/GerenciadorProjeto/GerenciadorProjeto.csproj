@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BacklogController.cs" />
+    <Compile Include="Controllers\ColaboradorController.cs" />
     <Compile Include="Controllers\EmpresaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProdutoController.cs" />
@@ -89,6 +90,9 @@
     <Content Include="Views\Backlog\Create.ascx" />
     <Content Include="Views\Backlog\Index.aspx" />
     <Content Include="Views\Backlog\List.ascx" />
+    <Content Include="Views\Colaborador\Create.ascx" />
+    <Content Include="Views\Colaborador\Index.aspx" />
+    <Content Include="Views\Colaborador\List.ascx" />
     <Content Include="Views\Empresa\Index.aspx" />
     <Content Include="Views\Produto\Create.ascx" />
     <Content Include="Views\Produto\Details.aspx" />
