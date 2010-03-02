@@ -76,28 +76,57 @@ namespace GerenciadorProjeto.Controllers
 
         //
         // GET: /Backlog/Edit/5
- 
-        public ActionResult Edit(int id)
+
+        public ActionResult Edit(int BacklogItemId)
         {
-            return View();
+
+            var backLogItemToEdit = (from m in _model.BacklogItems
+                                 where m.BacklogItemId == BacklogItemId
+                                 select m).FirstOrDefault();
+
+            ViewData["ProdutoId"] = backLogItemToEdit.ProdutoId;
+            return PartialView(backLogItemToEdit);
         }
 
         //
         // POST: /Backlog/Edit/5
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit([Bind(Exclude="Data")]int BacklogItemId, BacklogItem BackLotItemEdited)
         {
             try
             {
                 // TODO: Add update logic here
- 
-                return RedirectToAction("Index");
+
+                ViewData["ProdutoId"] = BackLotItemEdited.ProdutoId;
+                if (!ModelState.IsValid)
+                {
+                    return PartialView("List", _model.BacklogItems.Where(p => p.ProdutoId == BackLotItemEdited.ProdutoId));
+                }
+
+                _model.BacklogItems.First(p => p.BacklogItemId == BacklogItemId).Nome = BackLotItemEdited.Nome;
+                _model.BacklogItems.First(p => p.BacklogItemId == BacklogItemId).Estimativa = BackLotItemEdited.Estimativa;
+                _model.BacklogItems.First(p => p.BacklogItemId == BacklogItemId).Nota = BackLotItemEdited.Nota;
+
+                _model.SubmitChanges();
+
+                return PartialView("List", _model.BacklogItems.Where(p => p.ProdutoId == BackLotItemEdited.ProdutoId));
             }
             catch
             {
-                return View();
+                return PartialView("List", _model.BacklogItems.Where(p => p.ProdutoId == BackLotItemEdited.ProdutoId));
             }
+        }
+        //
+        // POST: /Backlog/Delete/5
+        public ActionResult Delete(int BacklogItemId, int ProdutoId)
+        {
+            ViewData["ProdutoId"] = ProdutoId;
+            _model.BacklogItems.DeleteOnSubmit(_model.BacklogItems.First(p => p.BacklogItemId == BacklogItemId));
+
+            _model.SubmitChanges();
+
+            return PartialView("List", _model.BacklogItems.Where(p => p.BacklogItemId == ProdutoId));
         }
     }
 }

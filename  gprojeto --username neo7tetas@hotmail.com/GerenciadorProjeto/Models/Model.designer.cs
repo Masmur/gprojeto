@@ -33,9 +33,6 @@ namespace GerenciadorProjeto.Models
     partial void InsertEmpresa(Empresa instance);
     partial void UpdateEmpresa(Empresa instance);
     partial void DeleteEmpresa(Empresa instance);
-    partial void InsertSprint(Sprint instance);
-    partial void UpdateSprint(Sprint instance);
-    partial void DeleteSprint(Sprint instance);
     partial void InsertBacklogItem(BacklogItem instance);
     partial void UpdateBacklogItem(BacklogItem instance);
     partial void DeleteBacklogItem(BacklogItem instance);
@@ -48,6 +45,9 @@ namespace GerenciadorProjeto.Models
     partial void InsertColaborador(Colaborador instance);
     partial void UpdateColaborador(Colaborador instance);
     partial void DeleteColaborador(Colaborador instance);
+    partial void InsertSprint(Sprint instance);
+    partial void UpdateSprint(Sprint instance);
+    partial void DeleteSprint(Sprint instance);
     #endregion
 		
 		public ModelDataContext() : 
@@ -88,14 +88,6 @@ namespace GerenciadorProjeto.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<Sprint> Sprints
-		{
-			get
-			{
-				return this.GetTable<Sprint>();
-			}
-		}
-		
 		public System.Data.Linq.Table<BacklogItem> BacklogItems
 		{
 			get
@@ -127,6 +119,14 @@ namespace GerenciadorProjeto.Models
 				return this.GetTable<Colaborador>();
 			}
 		}
+		
+		public System.Data.Linq.Table<Sprint> Sprints
+		{
+			get
+			{
+				return this.GetTable<Sprint>();
+			}
+		}
 	}
 	
 	[Table(Name="dbo.Empresas")]
@@ -143,6 +143,8 @@ namespace GerenciadorProjeto.Models
 		
 		private EntitySet<Colaborador> _Colaboradors;
 		
+		private EntitySet<Sprint> _Sprints;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -157,6 +159,7 @@ namespace GerenciadorProjeto.Models
 		{
 			this._Produtos = new EntitySet<Produto>(new Action<Produto>(this.attach_Produtos), new Action<Produto>(this.detach_Produtos));
 			this._Colaboradors = new EntitySet<Colaborador>(new Action<Colaborador>(this.attach_Colaboradors), new Action<Colaborador>(this.detach_Colaboradors));
+			this._Sprints = new EntitySet<Sprint>(new Action<Sprint>(this.attach_Sprints), new Action<Sprint>(this.detach_Sprints));
 			OnCreated();
 		}
 		
@@ -213,7 +216,7 @@ namespace GerenciadorProjeto.Models
 			}
 		}
 		
-		[Association(Name="Empresa_Colaboradore", Storage="_Colaboradors", ThisKey="EmpresaId", OtherKey="EmpresaId")]
+		[Association(Name="Empresa_Colaborador", Storage="_Colaboradors", ThisKey="EmpresaId", OtherKey="EmpresaId")]
 		public EntitySet<Colaborador> Colaboradors
 		{
 			get
@@ -223,6 +226,19 @@ namespace GerenciadorProjeto.Models
 			set
 			{
 				this._Colaboradors.Assign(value);
+			}
+		}
+		
+		[Association(Name="Empresa_Sprint", Storage="_Sprints", ThisKey="EmpresaId", OtherKey="EmpresaId")]
+		public EntitySet<Sprint> Sprints
+		{
+			get
+			{
+				return this._Sprints;
+			}
+			set
+			{
+				this._Sprints.Assign(value);
 			}
 		}
 		
@@ -269,208 +285,17 @@ namespace GerenciadorProjeto.Models
 			this.SendPropertyChanging();
 			entity.Empresa = null;
 		}
-	}
-	
-	[Table(Name="dbo.Sprint")]
-	public partial class Sprint : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private long _SprintId;
-		
-		private long _ProdutoId;
-		
-		private string _Objetivo;
-		
-		private System.DateTime _Data;
-		
-		private EntitySet<SprintBackLog> _SprintBackLogs;
-		
-		private EntityRef<Produto> _Produto;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnSprintIdChanging(long value);
-    partial void OnSprintIdChanged();
-    partial void OnProdutoIdChanging(long value);
-    partial void OnProdutoIdChanged();
-    partial void OnObjetivoChanging(string value);
-    partial void OnObjetivoChanged();
-    partial void OnDataChanging(System.DateTime value);
-    partial void OnDataChanged();
-    #endregion
-		
-		public Sprint()
-		{
-			this._SprintBackLogs = new EntitySet<SprintBackLog>(new Action<SprintBackLog>(this.attach_SprintBackLogs), new Action<SprintBackLog>(this.detach_SprintBackLogs));
-			this._Produto = default(EntityRef<Produto>);
-			OnCreated();
-		}
-		
-		[Column(Storage="_SprintId", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public long SprintId
-		{
-			get
-			{
-				return this._SprintId;
-			}
-			set
-			{
-				if ((this._SprintId != value))
-				{
-					this.OnSprintIdChanging(value);
-					this.SendPropertyChanging();
-					this._SprintId = value;
-					this.SendPropertyChanged("SprintId");
-					this.OnSprintIdChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ProdutoId", DbType="BigInt NOT NULL")]
-		public long ProdutoId
-		{
-			get
-			{
-				return this._ProdutoId;
-			}
-			set
-			{
-				if ((this._ProdutoId != value))
-				{
-					if (this._Produto.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnProdutoIdChanging(value);
-					this.SendPropertyChanging();
-					this._ProdutoId = value;
-					this.SendPropertyChanged("ProdutoId");
-					this.OnProdutoIdChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Objetivo", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string Objetivo
-		{
-			get
-			{
-				return this._Objetivo;
-			}
-			set
-			{
-				if ((this._Objetivo != value))
-				{
-					this.OnObjetivoChanging(value);
-					this.SendPropertyChanging();
-					this._Objetivo = value;
-					this.SendPropertyChanged("Objetivo");
-					this.OnObjetivoChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Data", DbType="SmallDateTime NOT NULL")]
-		public System.DateTime Data
-		{
-			get
-			{
-				return this._Data;
-			}
-			set
-			{
-				if ((this._Data != value))
-				{
-					this.OnDataChanging(value);
-					this.SendPropertyChanging();
-					this._Data = value;
-					this.SendPropertyChanged("Data");
-					this.OnDataChanged();
-				}
-			}
-		}
-		
-		[Association(Name="Sprint_SprintBackLog", Storage="_SprintBackLogs", ThisKey="SprintId", OtherKey="SprintId")]
-		public EntitySet<SprintBackLog> SprintBackLogs
-		{
-			get
-			{
-				return this._SprintBackLogs;
-			}
-			set
-			{
-				this._SprintBackLogs.Assign(value);
-			}
-		}
-		
-		[Association(Name="Produto_Sprint", Storage="_Produto", ThisKey="ProdutoId", OtherKey="ProdutoId", IsForeignKey=true)]
-		public Produto Produto
-		{
-			get
-			{
-				return this._Produto.Entity;
-			}
-			set
-			{
-				Produto previousValue = this._Produto.Entity;
-				if (((previousValue != value) 
-							|| (this._Produto.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Produto.Entity = null;
-						previousValue.Sprints.Remove(this);
-					}
-					this._Produto.Entity = value;
-					if ((value != null))
-					{
-						value.Sprints.Add(this);
-						this._ProdutoId = value.ProdutoId;
-					}
-					else
-					{
-						this._ProdutoId = default(long);
-					}
-					this.SendPropertyChanged("Produto");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_SprintBackLogs(SprintBackLog entity)
+		private void attach_Sprints(Sprint entity)
 		{
 			this.SendPropertyChanging();
-			entity.Sprint = this;
+			entity.Empresa = this;
 		}
 		
-		private void detach_SprintBackLogs(SprintBackLog entity)
+		private void detach_Sprints(Sprint entity)
 		{
 			this.SendPropertyChanging();
-			entity.Sprint = null;
+			entity.Empresa = null;
 		}
 	}
 	
@@ -907,8 +732,6 @@ namespace GerenciadorProjeto.Models
 		
 		private System.DateTime _Data;
 		
-		private EntitySet<Sprint> _Sprints;
-		
 		private EntitySet<BacklogItem> _BacklogItems;
 		
 		private EntityRef<Empresa> _Empresa;
@@ -929,7 +752,6 @@ namespace GerenciadorProjeto.Models
 		
 		public Produto()
 		{
-			this._Sprints = new EntitySet<Sprint>(new Action<Sprint>(this.attach_Sprints), new Action<Sprint>(this.detach_Sprints));
 			this._BacklogItems = new EntitySet<BacklogItem>(new Action<BacklogItem>(this.attach_BacklogItems), new Action<BacklogItem>(this.detach_BacklogItems));
 			this._Empresa = default(EntityRef<Empresa>);
 			OnCreated();
@@ -1019,19 +841,6 @@ namespace GerenciadorProjeto.Models
 			}
 		}
 		
-		[Association(Name="Produto_Sprint", Storage="_Sprints", ThisKey="ProdutoId", OtherKey="ProdutoId")]
-		public EntitySet<Sprint> Sprints
-		{
-			get
-			{
-				return this._Sprints;
-			}
-			set
-			{
-				this._Sprints.Assign(value);
-			}
-		}
-		
 		[Association(Name="Produto_BacklogItem", Storage="_BacklogItems", ThisKey="ProdutoId", OtherKey="ProdutoId")]
 		public EntitySet<BacklogItem> BacklogItems
 		{
@@ -1097,18 +906,6 @@ namespace GerenciadorProjeto.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_Sprints(Sprint entity)
-		{
-			this.SendPropertyChanging();
-			entity.Produto = this;
-		}
-		
-		private void detach_Sprints(Sprint entity)
-		{
-			this.SendPropertyChanging();
-			entity.Produto = null;
 		}
 		
 		private void attach_BacklogItems(BacklogItem entity)
@@ -1220,7 +1017,7 @@ namespace GerenciadorProjeto.Models
 			}
 		}
 		
-		[Association(Name="Empresa_Colaboradore", Storage="_Empresa", ThisKey="EmpresaId", OtherKey="EmpresaId", IsForeignKey=true)]
+		[Association(Name="Empresa_Colaborador", Storage="_Empresa", ThisKey="EmpresaId", OtherKey="EmpresaId", IsForeignKey=true)]
 		public Empresa Empresa
 		{
 			get
@@ -1272,6 +1069,209 @@ namespace GerenciadorProjeto.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[Table(Name="dbo.Sprint")]
+	public partial class Sprint : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _SprintId;
+		
+		private long _EmpresaId;
+		
+		private string _Objetivo;
+		
+		private System.DateTime _Data;
+		
+		private EntitySet<SprintBackLog> _SprintBackLogs;
+		
+		private EntityRef<Empresa> _Empresa;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnSprintIdChanging(long value);
+    partial void OnSprintIdChanged();
+    partial void OnEmpresaIdChanging(long value);
+    partial void OnEmpresaIdChanged();
+    partial void OnObjetivoChanging(string value);
+    partial void OnObjetivoChanged();
+    partial void OnDataChanging(System.DateTime value);
+    partial void OnDataChanged();
+    #endregion
+		
+		public Sprint()
+		{
+			this._SprintBackLogs = new EntitySet<SprintBackLog>(new Action<SprintBackLog>(this.attach_SprintBackLogs), new Action<SprintBackLog>(this.detach_SprintBackLogs));
+			this._Empresa = default(EntityRef<Empresa>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_SprintId", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long SprintId
+		{
+			get
+			{
+				return this._SprintId;
+			}
+			set
+			{
+				if ((this._SprintId != value))
+				{
+					this.OnSprintIdChanging(value);
+					this.SendPropertyChanging();
+					this._SprintId = value;
+					this.SendPropertyChanged("SprintId");
+					this.OnSprintIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_EmpresaId", DbType="BigInt NOT NULL")]
+		public long EmpresaId
+		{
+			get
+			{
+				return this._EmpresaId;
+			}
+			set
+			{
+				if ((this._EmpresaId != value))
+				{
+					if (this._Empresa.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnEmpresaIdChanging(value);
+					this.SendPropertyChanging();
+					this._EmpresaId = value;
+					this.SendPropertyChanged("EmpresaId");
+					this.OnEmpresaIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Objetivo", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string Objetivo
+		{
+			get
+			{
+				return this._Objetivo;
+			}
+			set
+			{
+				if ((this._Objetivo != value))
+				{
+					this.OnObjetivoChanging(value);
+					this.SendPropertyChanging();
+					this._Objetivo = value;
+					this.SendPropertyChanged("Objetivo");
+					this.OnObjetivoChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Data", DbType="SmallDateTime NOT NULL", IsDbGenerated=true)]
+		public System.DateTime Data
+		{
+			get
+			{
+				return this._Data;
+			}
+			set
+			{
+				if ((this._Data != value))
+				{
+					this.OnDataChanging(value);
+					this.SendPropertyChanging();
+					this._Data = value;
+					this.SendPropertyChanged("Data");
+					this.OnDataChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Sprint_SprintBackLog", Storage="_SprintBackLogs", ThisKey="SprintId", OtherKey="SprintId")]
+		public EntitySet<SprintBackLog> SprintBackLogs
+		{
+			get
+			{
+				return this._SprintBackLogs;
+			}
+			set
+			{
+				this._SprintBackLogs.Assign(value);
+			}
+		}
+		
+		[Association(Name="Empresa_Sprint", Storage="_Empresa", ThisKey="EmpresaId", OtherKey="EmpresaId", IsForeignKey=true)]
+		public Empresa Empresa
+		{
+			get
+			{
+				return this._Empresa.Entity;
+			}
+			set
+			{
+				Empresa previousValue = this._Empresa.Entity;
+				if (((previousValue != value) 
+							|| (this._Empresa.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Empresa.Entity = null;
+						previousValue.Sprints.Remove(this);
+					}
+					this._Empresa.Entity = value;
+					if ((value != null))
+					{
+						value.Sprints.Add(this);
+						this._EmpresaId = value.EmpresaId;
+					}
+					else
+					{
+						this._EmpresaId = default(long);
+					}
+					this.SendPropertyChanged("Empresa");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_SprintBackLogs(SprintBackLog entity)
+		{
+			this.SendPropertyChanging();
+			entity.Sprint = this;
+		}
+		
+		private void detach_SprintBackLogs(SprintBackLog entity)
+		{
+			this.SendPropertyChanging();
+			entity.Sprint = null;
 		}
 	}
 }

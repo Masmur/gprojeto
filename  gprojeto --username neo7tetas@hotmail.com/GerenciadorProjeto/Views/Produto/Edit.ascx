@@ -9,7 +9,7 @@
        {%>
 
         <fieldset>
-            <legend>Fields</legend>
+            <legend>Editar Produto</legend>
                 <%= Html.Hidden("EmpresaId", ViewData["EmpresaId"])%>
             <p>
                 <label for="Nome">Nome:</label>

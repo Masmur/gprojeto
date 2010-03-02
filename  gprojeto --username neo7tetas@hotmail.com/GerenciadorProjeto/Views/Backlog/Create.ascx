@@ -1,5 +1,4 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<GerenciadorProjeto.Models.BacklogItem>" %>
-
     <% using (Ajax.BeginForm("Create","Backlog", new AjaxOptions
        {
            HttpMethod = "POST",

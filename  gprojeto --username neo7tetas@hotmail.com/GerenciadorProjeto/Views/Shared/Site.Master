@@ -33,7 +33,7 @@
             <div id="menucontainer">
                 <ul id="menu">      
                 
-                    <% if (Html.IsCurrentAction("Home") || Html.IsCurrentAction("Index", "Produto") || Html.IsCurrentAction("Index", "Colaborador"))
+                    <% if (Html.IsCurrentAction("Home") || Html.IsCurrentAction("Index", "Produto") || Html.IsCurrentAction("Index", "Colaborador") || Html.IsCurrentAction("Index", "Sprint"))
                        { %>
                 
                         <% if (Html.IsCurrentAction("Index", "Home"))
@@ -64,13 +64,13 @@
                         <% }%>  
 
 
-                        <% if (Html.IsCurrentAction("Sprints", "Home"))
+                        <% if (Html.IsCurrentAction("Index", "Sprint"))
                            { %>
-                            <li class="selected"><%= Html.ActionLink("Sprints", "Index", "Sprints")%></li>
+                            <li class="selected"><%= Html.ActionLink("Sprints", "Index", "Sprint")%></li>
                         <% }
                            else
                            { %>
-                            <li><%= Html.ActionLink("Sprints", "Index", "Sprints")%></li>
+                            <li><%= Html.ActionLink("Sprints", "Index", "Sprint")%></li>
                         <% }%>  
 
 

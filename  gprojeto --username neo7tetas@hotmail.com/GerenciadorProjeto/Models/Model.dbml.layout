@@ -8,12 +8,6 @@
         <elementListCompartment Id="7492a83d-584d-40a0-85b5-b2fd866dc453" absoluteBounds="0.64, 0.96, 1.9700000000000002, 0.53615315755208326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="1566eceb-75d3-4beb-8fff-00b1647eb840" absoluteBounds="0.625, 5.125, 2, 1.4248478190104166">
-      <DataClassMoniker Name="/ModelDataContext/Sprint" />
-      <nestedChildShapes>
-        <elementListCompartment Id="2f5c5729-1012-4987-8f75-029fa6b60f64" absoluteBounds="0.64000000000000012, 5.585, 1.9700000000000002, 0.86484781901041663" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="5c443ce9-04d5-479c-8d89-be1c459724f0" absoluteBounds="3.375, 2.25, 2, 1.7535424804687496">
       <DataClassMoniker Name="/ModelDataContext/BacklogItem" />
       <nestedChildShapes>
@@ -33,26 +27,12 @@
         <classShapeMoniker Id="10a87dcf-b7f2-42e8-96bc-9f3d6261b4bf" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.625 : 5.72199625651042); (3.375 : 5.72199625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/ModelDataContext/Sprint/Sprint_SprintBackLog" />
-      <nodes>
-        <classShapeMoniker Id="1566eceb-75d3-4beb-8fff-00b1647eb840" />
-        <classShapeMoniker Id="10a87dcf-b7f2-42e8-96bc-9f3d6261b4bf" />
-      </nodes>
-    </associationConnector>
     <classShape Id="de247c72-23c4-4e98-8f96-ad553ec390d1" absoluteBounds="0.625, 2.25, 2, 1.424847819010417">
       <DataClassMoniker Name="/ModelDataContext/Produto" />
       <nestedChildShapes>
         <elementListCompartment Id="ab37212d-f493-4d74-b9a4-b585979f1135" absoluteBounds="0.64, 2.71, 1.9700000000000002, 0.86484781901041663" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(1.625 : 3.82859537760417); (1.625 : 5.125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/ModelDataContext/Produto/Produto_Sprint" />
-      <nodes>
-        <classShapeMoniker Id="de247c72-23c4-4e98-8f96-ad553ec390d1" />
-        <classShapeMoniker Id="1566eceb-75d3-4beb-8fff-00b1647eb840" />
-      </nodes>
-    </associationConnector>
     <associationConnector edgePoints="[(2.625 : 3.03929768880208); (3.375 : 3.03929768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ModelDataContext/Produto/Produto_BacklogItem" />
       <nodes>
@@ -60,7 +40,7 @@
         <classShapeMoniker Id="5c443ce9-04d5-479c-8d89-be1c459724f0" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(1.625 : 1.59615315755208); (1.625 : 2.25)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(1.625 : 1.59615315755208); (1.625 : 2.25)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ModelDataContext/Empresa/Empresa_Produto" />
       <nodes>
         <classShapeMoniker Id="144dc865-55a9-4221-b15e-1fc3a0fe26b2" />
@@ -73,11 +53,31 @@
         <elementListCompartment Id="7c21e4c0-3373-4596-a18d-f0183bdd4ea1" absoluteBounds="3.39, 0.96, 1.9700000000000002, 0.70050048828125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.625 : 1.04807657877604); (3.375 : 1.04807657877604)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/ModelDataContext/Empresa/Empresa_Colaboradore" />
+    <associationConnector edgePoints="[(2.625 : 1.04807657877604); (3.375 : 1.04807657877604)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/ModelDataContext/Empresa/Empresa_Colaborador" />
       <nodes>
         <classShapeMoniker Id="144dc865-55a9-4221-b15e-1fc3a0fe26b2" />
         <classShapeMoniker Id="fc526260-dae4-429c-a4e1-028b260adb37" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="42a09faf-1b28-479c-b3ec-602efe01307e" absoluteBounds="0.625, 4.75, 2, 1.4248478190104168">
+      <DataClassMoniker Name="/ModelDataContext/Sprint" />
+      <nestedChildShapes>
+        <elementListCompartment Id="64630a6d-9c9d-448f-ad76-2fb9fc450a2f" absoluteBounds="0.64000000000000012, 5.21, 1.9700000000000002, 0.86484781901041674" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.625 : 5.64992390950521); (3.375 : 5.64992390950521)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/ModelDataContext/Sprint/Sprint_SprintBackLog" />
+      <nodes>
+        <classShapeMoniker Id="42a09faf-1b28-479c-b3ec-602efe01307e" />
+        <classShapeMoniker Id="10a87dcf-b7f2-42e8-96bc-9f3d6261b4bf" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.625 : 1.59615315755208); (3 : 1.97115315755208); (3 : 4.375); (2.625 : 4.75)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/ModelDataContext/Empresa/Empresa_Sprint" />
+      <nodes>
+        <classShapeMoniker Id="144dc865-55a9-4221-b15e-1fc3a0fe26b2" />
+        <classShapeMoniker Id="42a09faf-1b28-479c-b3ec-602efe01307e" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>
