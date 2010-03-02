@@ -14,7 +14,7 @@
 </div>      
     <% foreach (var item in Model) { %>
     <ul id="colaboradores">
-        <li id=id="conteiner_colaborador_<%= item.ColaboradorId.ToString() %>">
+        <li id="conteiner_colaborador_<%= item.ColaboradorId.ToString() %>">
             <div class="itemContainer">
                 <div class="leftContainer lastContainer">
                     <label title="<%= Html.Encode(item.Nome)%>" >

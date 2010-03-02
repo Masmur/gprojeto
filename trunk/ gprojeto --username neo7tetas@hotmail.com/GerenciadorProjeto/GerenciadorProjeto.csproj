@@ -64,6 +64,7 @@
     <Compile Include="Controllers\EmpresaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProdutoController.cs" />
+    <Compile Include="Controllers\SprintController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -88,17 +89,21 @@
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Views\Backlog\Create.ascx" />
+    <Content Include="Views\Backlog\Edit.ascx" />
     <Content Include="Views\Backlog\Index.aspx" />
     <Content Include="Views\Backlog\List.ascx" />
     <Content Include="Views\Colaborador\Create.ascx" />
+    <Content Include="Views\Colaborador\Edit.ascx" />
     <Content Include="Views\Colaborador\Index.aspx" />
     <Content Include="Views\Colaborador\List.ascx" />
-    <Content Include="Views\Empresa\Index.aspx" />
     <Content Include="Views\Produto\Create.ascx" />
     <Content Include="Views\Produto\Details.aspx" />
     <Content Include="Views\Produto\Edit.ascx" />
     <Content Include="Views\Produto\Index.aspx" />
     <Content Include="Views\Produto\List.ascx" />
+    <Content Include="Views\Sprint\Create.ascx" />
+    <Content Include="Views\Sprint\Index.aspx" />
+    <Content Include="Views\Sprint\List.ascx" />
     <Content Include="Web.config" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\jquery-1.3.2.js" />

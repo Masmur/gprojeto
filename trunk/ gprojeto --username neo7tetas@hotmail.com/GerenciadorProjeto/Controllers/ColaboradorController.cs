@@ -72,26 +72,42 @@ namespace GerenciadorProjeto.Controllers
         //
         // GET: /Colaborador/Edit/5
  
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int ColaboradorId)
         {
-            return View();
+            var colaboradorToEdit = (from m in _model.Colaboradors
+                                 where m.ColaboradorId == ColaboradorId
+                                 select m).FirstOrDefault();
+
+            ViewData["EmpresaId"] = colaboradorToEdit.EmpresaId;
+
+            return PartialView(colaboradorToEdit);
         }
 
         //
         // POST: /Colaborador/Edit/5
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int ColaboradorId, Colaborador ColaboradorEdited)
         {
             try
             {
                 // TODO: Add update logic here
- 
-                return RedirectToAction("Index");
+
+                ViewData["EmpresaId"] = ColaboradorEdited.EmpresaId;
+                if (!ModelState.IsValid)
+                {
+                    return PartialView("List", _model.Colaboradors.Where(p => p.EmpresaId == Convert.ToInt64(Session["EmpresaId"])));
+                }
+
+                _model.Colaboradors.First(p => p.ColaboradorId == ColaboradorId).Nome = ColaboradorEdited.Nome;
+
+                _model.SubmitChanges();
+
+                return PartialView("List", _model.Colaboradors.Where(p => p.EmpresaId == Convert.ToInt64(Session["EmpresaId"])));
             }
             catch
             {
-                return View();
+                return PartialView("List", _model.Colaboradors.Where(p => p.EmpresaId == Convert.ToInt64(Session["EmpresaId"])));
             }
         }
 
