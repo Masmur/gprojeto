@@ -33,9 +33,13 @@ namespace GerenciadorProjeto.Controllers
         //
         // GET: /Sprint/Details/5
 
-        public ActionResult Details(int id)
+        public ActionResult Details(int SprintId)
         {
-            return View();
+            // Retornar o Sprint informado no cabeçalho da função.
+            var sprintToDetail = _model.Sprints.Where(p => p.SprintId == SprintId).First();
+            ViewData["SprintId"] = SprintId;
+            ViewData["titulo"] = sprintToDetail.Objetivo;
+            return View(sprintToDetail);
         }
 
         //
@@ -72,27 +76,54 @@ namespace GerenciadorProjeto.Controllers
         //
         // GET: /Sprint/Edit/5
  
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int SprintId)
         {
-            return View();
+            var sprintToEdit = (from m in _model.Sprints
+                                 where m.SprintId == SprintId
+                                 select m).FirstOrDefault();
+
+            ViewData["EmpresaId"] = sprintToEdit.EmpresaId;
+
+            return PartialView(sprintToEdit);
         }
 
         //
         // POST: /Sprint/Edit/5
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int SprintId, Sprint SprintEdited)
         {
             try
             {
                 // TODO: Add update logic here
- 
-                return RedirectToAction("Index");
+
+                ViewData["EmpresaId"] = SprintEdited.EmpresaId;
+                if (!ModelState.IsValid)
+                {
+                    return PartialView("List", _model.Sprints.Where(p => p.EmpresaId == Convert.ToInt64(Session["EmpresaId"])));
+                }
+
+                _model.Sprints.First(p => p.SprintId == SprintId).Objetivo = SprintEdited.Objetivo;
+
+                _model.SubmitChanges();
+
+                return PartialView("List", _model.Sprints.Where(p => p.EmpresaId == Convert.ToInt64(Session["EmpresaId"])));
             }
             catch
             {
-                return View();
+                return PartialView("List", _model.Sprints.Where(p => p.EmpresaId == Convert.ToInt64(Session["EmpresaId"])));
             }
+        }
+
+        //
+        // POST: /Sprint/Delete/5
+        public ActionResult Delete(int SprintId)
+        {
+            _model.Sprints.DeleteOnSubmit(_model.Sprints.First(p => p.SprintId == SprintId));
+
+            _model.SubmitChanges();
+
+            return PartialView("List", _model.Sprints.Where(p => p.EmpresaId == Convert.ToInt64(Session["EmpresaId"])));
         }
     }
 }
