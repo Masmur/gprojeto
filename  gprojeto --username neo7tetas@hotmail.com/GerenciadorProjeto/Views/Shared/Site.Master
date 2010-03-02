@@ -106,8 +106,21 @@
                             <li><%= Html.ActionLink("Backlog", "Index", "Backlog", new { ProdutoId = ViewData["ProdutoId"] }, new { Class = "" })%></li>
                         <% }%>  
                          
-                    <% } %>                    
-                                      
+                    <% } %>    
+                    
+                    <% if (Html.IsCurrentAction("Details", "Sprint"))
+                       { %>
+                        
+                        <% if (Html.IsCurrentAction("Details", "Sprint"))
+                           { %>
+                            <li class="selected"><%= Html.ActionLink("Visão Geral", "Details", "Sprint", new { SprintId = ViewData["SprintId"] }, new { Class = "" })%></li>
+                        <% }
+                           else
+                           { %>
+                            <li><%= Html.ActionLink("Visão Geral", "Details","Sprint", new { SprintId = ViewData["SprintId"] }, new { Class = "" })%></li>
+                        <% }%>                         
+                         
+                    <% } %>                  
                 </ul>
             </div>
         </div>

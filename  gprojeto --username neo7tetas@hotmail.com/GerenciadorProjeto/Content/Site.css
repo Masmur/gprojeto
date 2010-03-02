@@ -279,6 +279,7 @@ div#title
     float:left;
     text-align:left;
     position:absolute;
+    margin: -13px 0px 0px 8px    
 }
 
 #logindisplay
