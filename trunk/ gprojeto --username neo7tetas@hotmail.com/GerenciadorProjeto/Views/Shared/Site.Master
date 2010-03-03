@@ -120,6 +120,15 @@
                             <li><%= Html.ActionLink("Visão Geral", "Details","Sprint", new { SprintId = ViewData["SprintId"] }, new { Class = "" })%></li>
                         <% }%>                         
                          
+                        <% if (Html.IsCurrentAction("Calendar", "Sprint"))
+                           { %>
+                            <li class="selected"><%= Html.ActionLink("Calendar", "Calendario", "Sprint", new { SprintId = ViewData["SprintId"] }, new { Class = "" })%></li>
+                        <% }
+                           else
+                           { %>
+                            <li><%= Html.ActionLink("Calendario", "Calendar", "Sprint", new { SprintId = ViewData["SprintId"] }, new { Class = "" })%></li>
+                        <% }%>                            
+                         
                     <% } %>                  
                 </ul>
             </div>
