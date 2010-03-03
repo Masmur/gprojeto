@@ -234,7 +234,7 @@ input[type="password"]
 
 /* TABLE
 ----------------------------------------------------------*/
-
+/*
 table 
 {
   border: solid 1px #e8eef4;
@@ -255,7 +255,7 @@ table th
   background-color: #e8eef4; 
   border: solid 1px #e8eef4;   
 }
-
+*/
 /* MISC  
 ----------------------------------------------------------*/
 .clear
@@ -435,11 +435,14 @@ li {
     list-style-type:none;
 }
 
-.radiusMenu {
+.radiusMenu 
+{
+    /*
     -moz-border-radius-bottomleft:10px;
     -moz-border-radius-bottomright:10px;
     -moz-border-radius-topleft:10px;
     -moz-border-radius-topright:10px;
+    */
     background-color:#EFF4FA;
     border-color:#6397CB;
     border-style:solid;
@@ -488,4 +491,100 @@ ul {
     margin-right:10px;
     padding:5px 10px 10px;
     height:auto;
+}
+
+.calendar {
+    border-spacing:4px;
+    margin:0 0 10px 8px;
+    width:98.2%;
+}
+
+.calendar thead th {
+    -moz-background-clip:border;
+    -moz-background-inline-policy:continuous;
+    -moz-background-origin:padding;
+    -moz-border-radius-bottomleft:10px;
+    -moz-border-radius-bottomright:10px;
+    -moz-border-radius-topleft:10px;
+    -moz-border-radius-topright:10px;
+    background:#FFFFFF url(/images/bg_buttons.png) repeat-x scroll left top;
+    border:1px solid #CCCCCC;
+    color:#555555;
+    font-family:"Trebuchet MS",Verdana,Arial,Helvetica,sans-serif;
+    font-size:13px;
+    font-weight:bold;
+    height:17px;
+    line-height:16px;
+    max-height:17px;
+    text-align:center;
+}
+
+.day {
+    -moz-border-radius-bottomleft:8px;
+    -moz-border-radius-bottomright:8px;
+    -moz-border-radius-topleft:8px;
+    -moz-border-radius-topright:8px;
+    background-color:#F5F5F5;
+    border-color:#CCCCCC;
+    border-style:solid;
+    border-width:1px 1px 2px;
+    height:100px;
+    margin:0;
+    vertical-align:top;
+    width:150px;
+}
+
+.non-commercial {
+    -moz-background-clip:border;
+    -moz-background-inline-policy:continuous;
+    -moz-background-origin:padding;
+    background:#FFF8E3 none repeat scroll 0 0;
+    border-color:#D6CDAF;
+}
+
+.other_month.non-commercial {
+    background-color:#FFFCF3;
+    border-color:#E8E2CE;
+}
+
+.date {
+    border-bottom:1px solid #E3E3E3;
+    color:#555555;
+    font-family:"Trebuchet MS",Verdana,Arial,Helvetica,sans-serif;
+    font-size:16px;
+    font-style:italic;
+    line-height:18px;
+    padding:2px 5px 2px 2px;
+    text-align:right;
+}
+
+.events-of-day {
+    height:53px;
+    padding:3px 1px 0 5px;
+}
+
+.notes {
+    float:right;
+    height:16px;
+    text-align:right;
+    width:35px;
+}
+
+.calendar-months {
+    margin:0 10px;
+    padding:5px;
+    text-align:center;
+}
+
+calendar-months-h3 {
+    display:inline;
+    font-size:20px;
+    font-weight:bold;
+    padding:6px;
+    text-transform:uppercase;
+    font-family:"Trebuchet MS",Arial,Helvetica,sans-serif;
+    font-size:15px;
+    font-weight:bold;
+    margin:0;
+    padding:0;    
 }

@@ -43,6 +43,31 @@ namespace GerenciadorProjeto.Controllers
         }
 
         //
+        // GET: /Sprint/Calendar/5
+
+        public ActionResult Calendar(int SprintId)
+        {
+            /*
+            // Retornar o Sprint informado no cabeçalho da função.
+            var sprintToDetail = _model.Sprints.Where(p => p.SprintId == SprintId).First();
+            ViewData["SprintId"] = SprintId;
+            ViewData["titulo"] = sprintToDetail.Objetivo;
+
+            int qtdDias = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
+
+            string[] dias = new string[qtdDias];
+
+            for (int i = 0; i < qtdDias; i++)
+            {
+                dias.SetValue("Dia " + (i + 1).ToString(), i);
+            }
+
+            ViewData["dias"] = dias.ToList();
+            */
+            return View();
+        }
+
+        //
         // GET: /Sprint/Create
 
         public ActionResult Create(int EmpresaId)
