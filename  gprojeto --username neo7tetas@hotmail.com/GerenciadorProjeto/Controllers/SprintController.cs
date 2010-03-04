@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using GerenciadorProjeto.Models;
+using GerenciadorProjeto.Classes;
+using System.Globalization;
 
 namespace GerenciadorProjeto.Controllers
 {
@@ -43,28 +45,56 @@ namespace GerenciadorProjeto.Controllers
         }
 
         //
-        // GET: /Sprint/Calendar/5
+        // GET: /Sprint/Calendario/5
 
-        public ActionResult Calendar(int SprintId)
+        public ActionResult Calendario(int SprintId)
         {
-            /*
+
             // Retornar o Sprint informado no cabeçalho da função.
             var sprintToDetail = _model.Sprints.Where(p => p.SprintId == SprintId).First();
             ViewData["SprintId"] = SprintId;
+            ViewData["mes"] = DateTime.Now.Month;
+            ViewData["ano"] = DateTime.Now.Year;
             ViewData["titulo"] = sprintToDetail.Objetivo;
 
             int qtdDias = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
 
-            string[] dias = new string[qtdDias];
+            Calendario _calendario = new Calendario();
 
             for (int i = 0; i < qtdDias; i++)
             {
-                dias.SetValue("Dia " + (i + 1).ToString(), i);
+                DateTime dia = new DateTime(DateTime.Now.Year, DateTime.Now.Month, i + 1);
+                _calendario.Adddia(i + 1, dia.DayOfWeek.ToString());
             }
 
-            ViewData["dias"] = dias.ToList();
-            */
-            return View();
+            ViewData["mes-nome"] = DateTimeFormatInfo.CurrentInfo.GetMonthName(DateTime.Now.Month);
+
+            return View(_calendario);
+        }
+
+        public ActionResult Calendar(int SprintId, int ano, int mes)
+        {
+            
+            // Retornar o Sprint informado no cabeçalho da função.
+            var sprintToDetail = _model.Sprints.Where(p => p.SprintId == SprintId).First();
+            ViewData["SprintId"] = SprintId;
+            ViewData["titulo"] = sprintToDetail.Objetivo;
+            ViewData["mes"] = mes;
+            ViewData["ano"] = ano;
+
+            int qtdDias = DateTime.DaysInMonth(ano, mes);
+
+            Calendario _calendario = new Calendario();
+
+            for (int i = 0; i < qtdDias; i++)
+            {
+                DateTime dia = new DateTime(ano,mes, i + 1);
+                _calendario.Adddia(i + 1, dia.DayOfWeek.ToString());
+            }
+
+            ViewData["mes-nome"] = DateTimeFormatInfo.CurrentInfo.GetMonthName(mes);
+
+            return PartialView(_calendario);
         }
 
         //
