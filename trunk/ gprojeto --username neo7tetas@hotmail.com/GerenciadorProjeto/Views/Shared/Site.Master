@@ -108,7 +108,7 @@
                          
                     <% } %>    
                     
-                    <% if (Html.IsCurrentAction("Details", "Sprint"))
+                    <% if (Html.IsCurrentAction("Details", "Sprint") || Html.IsCurrentAction("Calendario", "Sprint"))
                        { %>
                         
                         <% if (Html.IsCurrentAction("Details", "Sprint"))
@@ -120,13 +120,13 @@
                             <li><%= Html.ActionLink("Visão Geral", "Details","Sprint", new { SprintId = ViewData["SprintId"] }, new { Class = "" })%></li>
                         <% }%>                         
                          
-                        <% if (Html.IsCurrentAction("Calendar", "Sprint"))
+                        <% if (Html.IsCurrentAction("Calendario", "Sprint"))
                            { %>
-                            <li class="selected"><%= Html.ActionLink("Calendar", "Calendario", "Sprint", new { SprintId = ViewData["SprintId"] }, new { Class = "" })%></li>
+                            <li class="selected"><%= Html.ActionLink("Calendario", "Calendario", "Sprint", new { SprintId = ViewData["SprintId"] }, new { Class = "" })%></li>
                         <% }
                            else
                            { %>
-                            <li><%= Html.ActionLink("Calendario", "Calendar", "Sprint", new { SprintId = ViewData["SprintId"] }, new { Class = "" })%></li>
+                            <li><%= Html.ActionLink("Calendario", "Calendario", "Sprint", new { SprintId = ViewData["SprintId"], ano = DateTime.Now.Year, mes = 1 }, new { Class = "" })%></li>
                         <% }%>                            
                          
                     <% } %>                  
