@@ -3,7 +3,8 @@
        {
            HttpMethod = "POST",
            InsertionMode = InsertionMode.Replace,
-           UpdateTargetId = "listProduto"
+           UpdateTargetId = "listProduto",
+           LoadingElementId = "carregando"
        }))
        {%>
 

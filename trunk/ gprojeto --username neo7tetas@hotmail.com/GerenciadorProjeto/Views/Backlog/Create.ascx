@@ -3,7 +3,8 @@
        {
            HttpMethod = "POST",
            InsertionMode = InsertionMode.Replace,
-           UpdateTargetId = "listBacklog"
+           UpdateTargetId = "listBacklog",
+           LoadingElementId = "carregando"
        }))
        {%>
         <fieldset>
@@ -26,7 +27,12 @@
             </p>
             <p>
                 <input type="submit" value="Adicionar" />
-                <%= Ajax.ActionLink("Cancelar", "List", new { ProdutoId = ViewData["ProdutoId"]}, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "listBacklog" })%>                
+                <%= Ajax.ActionLink("Cancelar", "List", new { ProdutoId = ViewData["ProdutoId"] }, 
+                                                        new AjaxOptions         {
+                                                                                    InsertionMode = InsertionMode.Replace,
+                                                                                    UpdateTargetId = "listBacklog",
+                                                                                    LoadingElementId = "carregando"
+                                                                                })%>                
             </p>
         </fieldset>
 

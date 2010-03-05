@@ -87,6 +87,7 @@
     <Content Include="App_Data\Projetos_log.ldf">
       <DependentUpon>Projetos.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\ajax-loader.gif" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Views\Backlog\Create.ascx" />

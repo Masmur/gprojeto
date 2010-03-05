@@ -6,7 +6,8 @@
                                                     {
                                                         HttpMethod = "GET",
                                                         InsertionMode = InsertionMode.Replace,
-                                                        UpdateTargetId = "formCreateColaborador"
+                                                        UpdateTargetId = "formCreateColaborador",
+                                                        LoadingElementId = "carregando"
                                                     })%>
     </p> 
     <div id="formCreateColaborador">
@@ -26,7 +27,8 @@
                         <%= Ajax.ActionLink("Editar", "Edit", "Colaborador", new { ColaboradorId = item.ColaboradorId },
                                                                             new AjaxOptions {   HttpMethod = "GET",
                                                                                                 InsertionMode = InsertionMode.Replace,
-                                                                                                UpdateTargetId = "container_formEdit_colaborador_" + item.ColaboradorId.ToString()
+                                                                                                UpdateTargetId = "container_formEdit_colaborador_" + item.ColaboradorId.ToString(),
+                                                                                                LoadingElementId = "carregando"
                                                                             },
                                                                             new { Class = "radiusMenu" })%>
                     </li>
@@ -35,7 +37,8 @@
                                                                             new AjaxOptions {   Confirm = "Confirma a deleção??",
                                                                                                 HttpMethod = "POST",
                                                                                                 InsertionMode = InsertionMode.Replace,
-                                                                                                UpdateTargetId = "listColaborador"
+                                                                                                UpdateTargetId = "listColaborador",
+                                                                                                LoadingElementId = "carregando"
                                                                             },
                                                                             new { Class = "radiusMenu" })%>
                     </li>

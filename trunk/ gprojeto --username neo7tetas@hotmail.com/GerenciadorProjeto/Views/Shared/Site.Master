@@ -12,24 +12,36 @@
 
 <body>
     <div class="page">
-
         <div id="header">
-            <div id="title">
-                <% if (ViewData["titulo"] != null)
-                   {  %>
-                        <h1><%= ViewData["titulo"]%></h1>
-                <% }
-                   else
-                   {%>
-                    <h1>Secretaria de Estado da Saúde</h1>
-                <%} %>
-                
+            <div id="navigation">
+                    <div id="context-navigation" class="context-navigation">
+                        <% if (!Html.IsCurrentAction("Home") && !Html.IsCurrentAction("Index", "Produto")
+                               && !Html.IsCurrentAction("Index", "Colaborador") && !Html.IsCurrentAction("Index", "Sprint"))
+                           {%>                    
+                            <ul>
+                                <li><%= Html.ActionLink("Dashboard", "Index", "Home")%></li>
+                                <li><%= Html.ActionLink("Produtos", "Index", "Produto")%></li>
+                                <li><%= Html.ActionLink("Sprints", "Index", "Sprint")%></li>
+                                <li><%= Html.ActionLink("Colaboradores", "Index", "Colaborador")%></li>
+                            </ul>
+                         <%} %>                        
+                    </div>                           
+                <div id="personal-bar" class="personal-bar">
+                    <% Html.RenderPartial("LogOnUserControl"); %>
+                </div>
             </div>
-              
-            <div id="logindisplay">
-                <% Html.RenderPartial("LogOnUserControl"); %>
-            </div> 
-            
+            <div id="title">
+                <div id="context-title">
+                    <% if (ViewData["titulo"] != null)
+                       {  %>
+                            <h1><%= ViewData["titulo"]%></h1>
+                    <% }
+                       else
+                       {%>
+                        <h1>Secretaria de Estado da Saúde</h1>
+                    <%} %>
+                </div>
+            </div>
             <div id="menucontainer">
                 <ul id="menu">      
                 
@@ -108,7 +120,7 @@
                          
                     <% } %>    
                     
-                    <% if (Html.IsCurrentAction("Details", "Sprint") || Html.IsCurrentAction("Calendario", "Sprint"))
+                    <% if (Html.IsCurrentAction("Details", "Sprint") || Html.IsCurrentAction("Calendario", "Sprint") || Html.IsCurrentAction("SprintBackLog", "Sprint"))
                        { %>
                         
                         <% if (Html.IsCurrentAction("Details", "Sprint"))
@@ -127,7 +139,16 @@
                            else
                            { %>
                             <li><%= Html.ActionLink("Calendario", "Calendario", "Sprint", new { SprintId = ViewData["SprintId"], ano = DateTime.Now.Year, mes = 1 }, new { Class = "" })%></li>
-                        <% }%>                            
+                        <% }%>      
+                        
+                        <% if (Html.IsCurrentAction("SprintBackLog", "Sprint"))
+                           { %>
+                            <li class="selected"><%= Html.ActionLink("Sprint BackLog", "SprintBackLog", "Sprint", new { SprintId = ViewData["SprintId"] }, new { Class = "" })%></li>
+                        <% }
+                           else
+                           { %>
+                            <li><%= Html.ActionLink("Sprint BackLog", "SprintBackLog", "Sprint", new { SprintId = ViewData["SprintId"], ano = DateTime.Now.Year, mes = 1 }, new { Class = "" })%></li>
+                        <% }%>                                                
                          
                     <% } %>                  
                 </ul>
@@ -135,6 +156,8 @@
         </div>
 
         <div id="main">
+            <span id="carregando" style="visibility:hidden; display:none;">
+            <img src="../../Content/ajax-loader.gif" /></span>
             <asp:ContentPlaceHolder ID="MainContent" runat="server" />
 
             <div id="footer">
