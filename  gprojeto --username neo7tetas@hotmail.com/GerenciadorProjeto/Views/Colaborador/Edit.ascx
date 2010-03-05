@@ -3,7 +3,8 @@
        {
            HttpMethod = "POST",
            InsertionMode = InsertionMode.Replace,
-           UpdateTargetId = "listColaborador"
+           UpdateTargetId = "listColaborador",
+           LoadingElementId = "carregando"
        }))
        {%>
 
@@ -17,7 +18,12 @@
             </p>
             <p>
                 <input type="submit" value="Atualizar" />
-                <%= Ajax.ActionLink("Cancelar", "List", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "listColaborador" })%>                
+                <%= Ajax.ActionLink("Cancelar", "List", new AjaxOptions
+                                                            {
+                                                                InsertionMode = InsertionMode.Replace,
+                                                                UpdateTargetId = "listColaborador",
+                                                                LoadingElementId = "carregando"
+                                                            })%>                
             </p>
         </fieldset>
 

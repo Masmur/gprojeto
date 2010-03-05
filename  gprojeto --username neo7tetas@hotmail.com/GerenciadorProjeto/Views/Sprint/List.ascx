@@ -6,7 +6,8 @@
                                                     {
                                                         HttpMethod = "GET",
                                                         InsertionMode = InsertionMode.Replace,
-                                                        UpdateTargetId = "formCreateSprint"
+                                                        UpdateTargetId = "formCreateSprint",
+                                                        LoadingElementId = "carregando"
                                                     })%>
     </p> 
     <div id="formCreateSprint">
@@ -29,7 +30,8 @@
                         <%= Ajax.ActionLink("Editar", "Edit", "Sprint",    new { SprintId = item.SprintId },
                                                                             new AjaxOptions {   HttpMethod = "GET",
                                                                                                 InsertionMode = InsertionMode.Replace,
-                                                                                                UpdateTargetId = "container_formEdit_sprint_" + item.SprintId.ToString()
+                                                                                                UpdateTargetId = "container_formEdit_sprint_" + item.SprintId.ToString(),
+                                                                                                LoadingElementId = "carregando"
                                                                             },
                                                                             new { Class = "radiusMenu" })%>
                     </li>
@@ -38,7 +40,8 @@
                                                                             new AjaxOptions {   Confirm = "Confirma a deleção??",
                                                                                                 HttpMethod = "POST",
                                                                                                 InsertionMode = InsertionMode.Replace,
-                                                                                                UpdateTargetId = "listSprint"
+                                                                                                UpdateTargetId = "listSprint",
+                                                                                                LoadingElementId = "carregando"
                                                                             },
                                                                             new { Class = "radiusMenu" })%>
                     </li>

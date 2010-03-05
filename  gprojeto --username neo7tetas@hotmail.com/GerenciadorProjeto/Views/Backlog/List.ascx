@@ -6,7 +6,8 @@
                                                     {
                                                         HttpMethod = "GET",
                                                         InsertionMode = InsertionMode.Replace,
-                                                        UpdateTargetId = "formCreateBackLog"
+                                                        UpdateTargetId = "formCreateBackLog",
+                                                        LoadingElementId = "carregando"
                                                     })%>
     </p> 
     <div id="formCreateBackLog">
@@ -26,7 +27,8 @@
                         <%= Ajax.ActionLink("Editar", "Edit", "Backlog", new { BacklogItemId = item.BacklogItemId, ProdutoId = ViewData["ProdutoId"] },
                                                                             new AjaxOptions {   HttpMethod = "GET",
                                                                                                 InsertionMode = InsertionMode.Replace,
-                                                                                                UpdateTargetId = "container_formEdit_BackLogItem_" + item.BacklogItemId.ToString()
+                                                                                                UpdateTargetId = "container_formEdit_BackLogItem_" + item.BacklogItemId.ToString(),
+                                                                                                LoadingElementId = "carregando"
                                                                             },
                                                                             new { Class = "radiusMenu" })%>
                     </li>
@@ -35,7 +37,8 @@
                                                                             new AjaxOptions {   Confirm = "Confirma a deleção??",
                                                                                                 HttpMethod = "POST",
                                                                                                 InsertionMode = InsertionMode.Replace,
-                                                                                                UpdateTargetId = "listBacklog"
+                                                                                                UpdateTargetId = "listBacklog",
+                                                                                                LoadingElementId = "carregando"
                                                                             },
                                                                             new { Class = "radiusMenu" })%>
                     </li>

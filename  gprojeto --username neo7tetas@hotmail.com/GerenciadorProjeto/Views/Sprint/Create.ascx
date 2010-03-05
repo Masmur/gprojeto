@@ -3,7 +3,8 @@
        {
            HttpMethod = "POST",
            InsertionMode = InsertionMode.Replace,
-           UpdateTargetId = "listSprint"
+           UpdateTargetId = "listSprint",
+           LoadingElementId = "carregando"
        }))
        {%>
         <fieldset>

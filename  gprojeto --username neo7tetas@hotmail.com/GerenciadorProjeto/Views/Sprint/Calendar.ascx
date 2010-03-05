@@ -7,7 +7,9 @@
                                 Ano =  ViewData["ano"]
                             },
                                                     new AjaxOptions {   InsertionMode = InsertionMode.Replace,
-                                                                        UpdateTargetId = "calendario"})%>
+                                                                        UpdateTargetId = "calendario",
+                                                                        LoadingElementId = "carregando"
+                                                    })%>
         <h3><%= ViewData["mes-nome"] + " de " + ViewData["ano"]%></h3>
         <%= Ajax.ActionLink("Proximo", "Calendar", new
                             {
@@ -16,8 +18,9 @@
                                 Ano = ViewData["ano"]
                             },
                                                     new AjaxOptions {   InsertionMode = InsertionMode.Replace,
-                                                                        UpdateTargetId = "calendario"})%>
-        
+                                                                        UpdateTargetId = "calendario",
+                                                                        LoadingElementId = "carregando"
+                                                    })%>
     </div>
         <div id="calendar">
             <table class="calendar">
