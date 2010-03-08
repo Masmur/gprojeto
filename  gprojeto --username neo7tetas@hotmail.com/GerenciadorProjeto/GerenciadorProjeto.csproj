@@ -103,6 +103,8 @@
     <Content Include="Views\Produto\Edit.ascx" />
     <Content Include="Views\Produto\Index.aspx" />
     <Content Include="Views\Produto\List.ascx" />
+    <Content Include="Views\Sprint\Backlog.aspx" />
+    <Content Include="Views\Sprint\Backlog_ikd.aspx" />
     <Content Include="Views\Sprint\Calendar.ascx" />
     <Content Include="Views\Sprint\Calendario.aspx" />
     <Content Include="Views\Sprint\Create.ascx" />
@@ -110,6 +112,7 @@
     <Content Include="Views\Sprint\Edit.ascx" />
     <Content Include="Views\Sprint\Index.aspx" />
     <Content Include="Views\Sprint\List.ascx" />
+    <Content Include="Views\Sprint\SprintBackLogList.ascx" />
     <Content Include="Web.config" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\jquery-1.3.2.js" />

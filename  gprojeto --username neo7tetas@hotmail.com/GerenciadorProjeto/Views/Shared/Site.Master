@@ -31,6 +31,8 @@
                 </div>
             </div>
             <div id="title">
+                <span id="carregando" style="visibility:hidden; display:none;">
+                <img src="../../Content/ajax-loader.gif" /></span>
                 <div id="context-title">
                     <% if (ViewData["titulo"] != null)
                        {  %>
@@ -120,7 +122,9 @@
                          
                     <% } %>    
                     
-                    <% if (Html.IsCurrentAction("Details", "Sprint") || Html.IsCurrentAction("Calendario", "Sprint") || Html.IsCurrentAction("SprintBackLog", "Sprint"))
+                    <% if (Html.IsCurrentAction("Details", "Sprint") 
+                           || Html.IsCurrentAction("Calendario", "Sprint") 
+                           || Html.IsCurrentAction("BackLog", "Sprint"))
                        { %>
                         
                         <% if (Html.IsCurrentAction("Details", "Sprint"))
@@ -141,13 +145,13 @@
                             <li><%= Html.ActionLink("Calendario", "Calendario", "Sprint", new { SprintId = ViewData["SprintId"], ano = DateTime.Now.Year, mes = 1 }, new { Class = "" })%></li>
                         <% }%>      
                         
-                        <% if (Html.IsCurrentAction("SprintBackLog", "Sprint"))
+                        <% if (Html.IsCurrentAction("BackLog", "Sprint"))
                            { %>
-                            <li class="selected"><%= Html.ActionLink("Sprint BackLog", "SprintBackLog", "Sprint", new { SprintId = ViewData["SprintId"] }, new { Class = "" })%></li>
+                            <li class="selected"><%= Html.ActionLink("Sprint BackLog", "BackLog", "Sprint", new { SprintId = ViewData["SprintId"] }, new { Class = "" })%></li>
                         <% }
                            else
                            { %>
-                            <li><%= Html.ActionLink("Sprint BackLog", "SprintBackLog", "Sprint", new { SprintId = ViewData["SprintId"], ano = DateTime.Now.Year, mes = 1 }, new { Class = "" })%></li>
+                            <li><%= Html.ActionLink("Sprint BackLog", "BackLog", "Sprint", new { SprintId = ViewData["SprintId"], ano = DateTime.Now.Year, mes = 1 }, new { Class = "" })%></li>
                         <% }%>                                                
                          
                     <% } %>                  
@@ -156,8 +160,6 @@
         </div>
 
         <div id="main">
-            <span id="carregando" style="visibility:hidden; display:none;">
-            <img src="../../Content/ajax-loader.gif" /></span>
             <asp:ContentPlaceHolder ID="MainContent" runat="server" />
 
             <div id="footer">
