@@ -33,7 +33,7 @@
         <elementListCompartment Id="ab37212d-f493-4d74-b9a4-b585979f1135" absoluteBounds="0.64, 2.71, 1.9700000000000002, 0.86484781901041663" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.625 : 3.03929768880208); (3.375 : 3.03929768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2.625 : 2.96242390950521); (3.375 : 2.96242390950521)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ModelDataContext/Produto/Produto_BacklogItem" />
       <nodes>
         <classShapeMoniker Id="de247c72-23c4-4e98-8f96-ad553ec390d1" />
