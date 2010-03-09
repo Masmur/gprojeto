@@ -12,24 +12,38 @@ namespace GerenciadorProjeto.Controllers
 {
     public class SprintController : Controller
     {
-        // Objeto que faz interação com o banco.
+
         ModelDataContext _model = new ModelDataContext();
+
+        //Repositorio do Sprint.
+        private ISprintRepository repSprint;
+
+        // Cria Istancia da classe no contructor.
+        public SprintController()
+            : this(new SprintRepository())
+        {
+
+        }
+        
+        // Configura estrutura do repositorio para ser ultiilizada.
+        public SprintController(ISprintRepository Repository)
+        {
+            repSprint = Repository;
+        }
 
         //
         // GET: /Sprint/
-
         public ActionResult Index()
         {
-            // Retorna lista de sprints vinculados a empresa.
-            return View(_model.Sprints.Where(p => p.EmpresaId == Convert.ToInt64(Session["EmpresaId"])));
+            var AllSprints = repSprint.GetAllSprints(Convert.ToInt32(Session["EmpresaId"]));
+            return View(AllSprints);
         }
 
         //
         // GET: /Sprint/List
         public ActionResult List()
         {
-            // Retorna lista.
-            return PartialView("List", _model.Sprints.Where(p => p.EmpresaId == Convert.ToInt64(Session["EmpresaId"])));
+            return PartialView("List", repSprint.GetAllSprints(Convert.ToInt32(Session["EmpresaId"])));
         }
 
         //
@@ -38,7 +52,7 @@ namespace GerenciadorProjeto.Controllers
         public ActionResult SprintBacklog(int SprintId)
         {
             // Retornar o Sprint informado no cabeçalho da função.
-            var sprintToDetail = _model.Sprints.Where(p => p.SprintId == SprintId).First();
+            var sprintToDetail = repSprint.GetSprintById(SprintId);
             ViewData["SprintId"] = SprintId;
             ViewData["titulo"] = sprintToDetail.Objetivo;
             return View(sprintToDetail);
@@ -58,7 +72,7 @@ namespace GerenciadorProjeto.Controllers
         public ActionResult Details(int SprintId)
         {
             // Retornar o Sprint informado no cabeçalho da função.
-            var sprintToDetail = _model.Sprints.Where(p => p.SprintId == SprintId).First();
+            var sprintToDetail = repSprint.GetSprintById(SprintId);
             ViewData["SprintId"] = SprintId;
             ViewData["titulo"] = sprintToDetail.Objetivo;
             return View(sprintToDetail);
@@ -71,7 +85,7 @@ namespace GerenciadorProjeto.Controllers
         {
 
             // Retornar o Sprint informado no cabeçalho da função.
-            var sprintToDetail = _model.Sprints.Where(p => p.SprintId == SprintId).First();
+            var sprintToDetail = repSprint.GetSprintById(SprintId);
             ViewData["SprintId"] = SprintId;
             ViewData["mes"] = DateTime.Now.Month;
             ViewData["ano"] = DateTime.Now.Year;
@@ -96,7 +110,7 @@ namespace GerenciadorProjeto.Controllers
         {
             
             // Retornar o Sprint informado no cabeçalho da função.
-            var sprintToDetail = _model.Sprints.Where(p => p.SprintId == SprintId).First();
+            var sprintToDetail = repSprint.GetSprintById(SprintId);
             ViewData["SprintId"] = SprintId;
             ViewData["titulo"] = sprintToDetail.Objetivo;
             ViewData["mes"] = mes;
@@ -136,15 +150,14 @@ namespace GerenciadorProjeto.Controllers
             {
                 // TODO: Add insert logic here
                 ViewData["EmpresaId"] = novoSprint.EmpresaId;
-                _model.Sprints.InsertOnSubmit(novoSprint);
 
-                _model.SubmitChanges();
+                repSprint.AddSprint(novoSprint);
 
-                return PartialView("List", _model.Sprints.Where(p => p.EmpresaId == Convert.ToInt64(Session["EmpresaId"])));
+                return PartialView("List", repSprint.GetAllSprints(Convert.ToInt32(Session["EmpresaId"])));
             }
             catch
             {
-                return PartialView("List", _model.Sprints.Where(p => p.EmpresaId == Convert.ToInt64(Session["EmpresaId"])));
+                return PartialView("List", repSprint.GetAllSprints(Convert.ToInt32(Session["EmpresaId"])));
             }
         }
 
@@ -153,9 +166,8 @@ namespace GerenciadorProjeto.Controllers
  
         public ActionResult Edit(int SprintId)
         {
-            var sprintToEdit = (from m in _model.Sprints
-                                 where m.SprintId == SprintId
-                                 select m).FirstOrDefault();
+
+            var sprintToEdit = repSprint.GetSprintById(SprintId);
 
             ViewData["EmpresaId"] = sprintToEdit.EmpresaId;
 
@@ -166,27 +178,21 @@ namespace GerenciadorProjeto.Controllers
         // POST: /Sprint/Edit/5
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Edit(int SprintId, Sprint SprintEdited)
+        public ActionResult Edit(Sprint SprintEdited)
         {
             try
             {
                 // TODO: Add update logic here
 
                 ViewData["EmpresaId"] = SprintEdited.EmpresaId;
-                if (!ModelState.IsValid)
-                {
-                    return PartialView("List", _model.Sprints.Where(p => p.EmpresaId == Convert.ToInt64(Session["EmpresaId"])));
-                }
 
-                _model.Sprints.First(p => p.SprintId == SprintId).Objetivo = SprintEdited.Objetivo;
+                repSprint.EditSprint(SprintEdited);
 
-                _model.SubmitChanges();
-
-                return PartialView("List", _model.Sprints.Where(p => p.EmpresaId == Convert.ToInt64(Session["EmpresaId"])));
+                return PartialView("List", repSprint.GetAllSprints(Convert.ToInt32(Session["EmpresaId"])));
             }
             catch
             {
-                return PartialView("List", _model.Sprints.Where(p => p.EmpresaId == Convert.ToInt64(Session["EmpresaId"])));
+                return PartialView("List", repSprint.GetAllSprints(Convert.ToInt32(Session["EmpresaId"])));
             }
         }
 
@@ -194,11 +200,9 @@ namespace GerenciadorProjeto.Controllers
         // POST: /Sprint/Delete/5
         public ActionResult Delete(int SprintId)
         {
-            _model.Sprints.DeleteOnSubmit(_model.Sprints.First(p => p.SprintId == SprintId));
+            repSprint.DeleteASprint(SprintId);
 
-            _model.SubmitChanges();
-
-            return PartialView("List", _model.Sprints.Where(p => p.EmpresaId == Convert.ToInt64(Session["EmpresaId"])));
+            return PartialView("List", repSprint.GetAllSprints(Convert.ToInt32(Session["EmpresaId"])));
         }
     }
 }
