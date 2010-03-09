@@ -10,33 +10,43 @@ namespace GerenciadorProjeto.Controllers
 {
     public class ProdutoController : Controller
     {
-        // Objeto que faz interação com o banco.
-        ModelDataContext _model = new ModelDataContext();
+       
+        //Repositorio do produto.
+        private IProdutoRepository repProduto;
+
+        // Cria Istancia da classe no contructor.
+        public ProdutoController()
+            : this(new ProdutoRepository())
+        {
+
+        }
+
+        // Configura estrutura do repositorio para ser ultiilizada.
+        public ProdutoController(IProdutoRepository Repository)
+        {
+            repProduto = Repository;
+        }
 
         //
         // GET: /Produto/
-
         public ActionResult Index()
         {
-            // Retorna lista de projetos da empresa na sessão.
-            return View(_model.Produtos.Where(p => p.EmpresaId == Convert.ToInt64(Session["EmpresaId"])));
+            var AllProdutos = repProduto.GetAllProdutos(Convert.ToInt32(Session["EmpresaId"]));
+            return View(AllProdutos);
         }
 
         //
         // GET: /Produto/List
         public ActionResult List()
         {
-            // Retorna lista.
-            return PartialView("List",_model.Produtos.Where(p => p.EmpresaId == Convert.ToInt64(Session["EmpresaId"])));
+            return PartialView("List", repProduto.GetAllProdutos(Convert.ToInt32(Session["EmpresaId"])));
         }
 
         //
         // GET: /Produto/Details/5
-
         public ActionResult Details(int ProdutoId)
         {
-            // Retornar o Produto informado no cabeçalho da função.
-            var produtoToDetail = _model.Produtos.Where(p => p.ProdutoId == ProdutoId).First();
+            var produtoToDetail = repProduto.GetProdutoById(ProdutoId);
             ViewData["ProdutoId"] = ProdutoId;
             ViewData["titulo"] = produtoToDetail.Nome;
             return View(produtoToDetail);
@@ -44,7 +54,6 @@ namespace GerenciadorProjeto.Controllers
 
         //
         // GET: /Produto/Create
-
         public ActionResult Create(int EmpresaId)
         {
             ViewData["EmpresaId"] = EmpresaId;
@@ -53,7 +62,6 @@ namespace GerenciadorProjeto.Controllers
 
         //
         // POST: /Produto/Create
-
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Create([Bind(Exclude="ProdutoId, Data")]Produto novoProduto)
         {
@@ -61,26 +69,22 @@ namespace GerenciadorProjeto.Controllers
             {
                 // TODO: Add insert logic here
                 ViewData["EmpresaId"] = novoProduto.EmpresaId;
-                _model.Produtos.InsertOnSubmit(novoProduto);
 
-                _model.SubmitChanges();
+                repProduto.AddProduto(novoProduto);
 
-                return PartialView("List", _model.Produtos.Where(p => p.EmpresaId == Convert.ToInt64(Session["EmpresaId"])));
+                return PartialView("List", repProduto.GetAllProdutos(Convert.ToInt32(Session["EmpresaId"])));
             }
             catch
             {
-                return PartialView("List", _model.Produtos.Where(p => p.EmpresaId == Convert.ToInt64(Session["EmpresaId"])));
+                return PartialView("List", repProduto.GetAllProdutos(Convert.ToInt32(Session["EmpresaId"])));
             }
         }
 
         //
         // GET: /Produto/Edit/5
- 
         public ActionResult Edit(int ProdutoId)
         {
-            var produtoToEdit =  (from m in _model.Produtos
-                                 where m.ProdutoId == ProdutoId
-                                 select m).FirstOrDefault();
+            var produtoToEdit = repProduto.GetProdutoById(ProdutoId);
 
             ViewData["EmpresaId"] = produtoToEdit.EmpresaId;
 
@@ -89,29 +93,20 @@ namespace GerenciadorProjeto.Controllers
 
         //
         // POST: /Produto/Edit/5
-
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Edit(int produtoId, Produto produtoEdited)
+        public ActionResult Edit(Produto produtoEdited)
         {
             try
             {
                 // TODO: Add update logic here
-
                 ViewData["EmpresaId"] = produtoEdited.EmpresaId;
-                if (!ModelState.IsValid)
-                {
-                    return PartialView("List", _model.Produtos.Where(p => p.EmpresaId == Convert.ToInt64(Session["EmpresaId"])));
-                }
+                repProduto.EditProduto(produtoEdited);
 
-                _model.Produtos.First(p => p.ProdutoId == produtoId).Nome = produtoEdited.Nome;
-
-                _model.SubmitChanges();
-
-                return PartialView("List", _model.Produtos.Where(p => p.EmpresaId == Convert.ToInt64(Session["EmpresaId"])));
+                return PartialView("List", repProduto.GetAllProdutos(Convert.ToInt32(Session["EmpresaId"])));
             }
             catch
             {
-                return PartialView("List", _model.Produtos.Where(p => p.EmpresaId == Convert.ToInt64(Session["EmpresaId"])));
+                return PartialView("List", repProduto.GetAllProdutos(Convert.ToInt32(Session["EmpresaId"])));
             }
         }
 
@@ -119,11 +114,8 @@ namespace GerenciadorProjeto.Controllers
         // POST: /Produto/Delete/5
         public ActionResult Delete(int ProdutoId)
         {
-            _model.Produtos.DeleteOnSubmit(_model.Produtos.First(p => p.ProdutoId == ProdutoId));
-
-            _model.SubmitChanges();
-
-            return PartialView("List", _model.Produtos.Where(p => p.EmpresaId == Convert.ToInt64(Session["EmpresaId"])));
+            repProduto.DeleteAProduto(ProdutoId);
+            return PartialView("List", repProduto.GetAllProdutos(Convert.ToInt32(Session["EmpresaId"])));
         }
     }
 }

@@ -75,11 +75,15 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\IsCurrentActionHelper.cs" />
+    <Compile Include="Models\IProdutoRepository.cs" />
+    <Compile Include="Models\ISprintRepository.cs" />
     <Compile Include="Models\Model.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProdutoRepository.cs" />
+    <Compile Include="Models\SprintRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
