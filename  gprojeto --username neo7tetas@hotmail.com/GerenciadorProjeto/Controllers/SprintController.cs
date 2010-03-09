@@ -35,13 +35,13 @@ namespace GerenciadorProjeto.Controllers
         //
         // GET: /Sprint/Backlog/5
 
-        public ActionResult Backlog(int SprintId)
+        public ActionResult SprintBacklog(int SprintId)
         {
             // Retornar o Sprint informado no cabeçalho da função.
-            var sprintDetatil = _model.Sprints.Where(p => p.SprintId == SprintId).Single();
+            var sprintToDetail = _model.Sprints.Where(p => p.SprintId == SprintId).First();
             ViewData["SprintId"] = SprintId;
-            ViewData["titulo"] = sprintDetatil.Objetivo;
-            return View();
+            ViewData["titulo"] = sprintToDetail.Objetivo;
+            return View(sprintToDetail);
         }
 
         //
@@ -49,7 +49,7 @@ namespace GerenciadorProjeto.Controllers
         public ActionResult SprintBackLogList(int SprintId)
         {
             // Retorna lista.
-            return PartialView(); 
+            return PartialView("SprintBackLogList", _model.vSprintBackLogs.Where(p => p.SprintId == SprintId)); 
         }
 
         //

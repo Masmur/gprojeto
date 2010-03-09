@@ -105,8 +105,7 @@
     <Content Include="Views\Produto\Edit.ascx" />
     <Content Include="Views\Produto\Index.aspx" />
     <Content Include="Views\Produto\List.ascx" />
-    <Content Include="Views\Sprint\Backlog.aspx" />
-    <Content Include="Views\Sprint\Backlog_old.aspx" />
+    <Content Include="Views\Sprint\SprintBacklog.aspx" />
     <Content Include="Views\Sprint\Calendar.ascx" />
     <Content Include="Views\Sprint\Calendario.aspx" />
     <Content Include="Views\Sprint\Create.ascx" />

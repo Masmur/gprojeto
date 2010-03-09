@@ -6,8 +6,15 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div id="content">
+    
+        <h1>Product Backlog</h1> 
+        <div id="listProductBackLog">
+            <%Html.RenderAction("SprintBackLogList", "Sprint", new { SprintId = Model.SprintId}); %>
+        </div>                   
+    
         <h1>Sprint BackLog</h1> 
         <div id="listSprintBackLog">
+            <%Html.RenderAction("SprintBackLogList", "Sprint", new { SprintId = Model.SprintId}); %>
         </div>                   
     </div>
 </asp:Content>
