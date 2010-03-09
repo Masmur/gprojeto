@@ -127,6 +127,14 @@ namespace GerenciadorProjeto.Models
 				return this.GetTable<Sprint>();
 			}
 		}
+		
+		public System.Data.Linq.Table<vSprintBackLog> vSprintBackLogs
+		{
+			get
+			{
+				return this.GetTable<vSprintBackLog>();
+			}
+		}
 	}
 	
 	[Table(Name="dbo.Empresas")]
@@ -1272,6 +1280,159 @@ namespace GerenciadorProjeto.Models
 		{
 			this.SendPropertyChanging();
 			entity.Sprint = null;
+		}
+	}
+	
+	[Table(Name="dbo.vSprintBackLog")]
+	public partial class vSprintBackLog
+	{
+		
+		private long _SprintId;
+		
+		private long _BacklogItemId;
+		
+		private long _ProdutoId;
+		
+		private string _Nome;
+		
+		private string _Nota;
+		
+		private System.DateTime _Data;
+		
+		private double _Estimativa;
+		
+		private string _Objetivo;
+		
+		public vSprintBackLog()
+		{
+		}
+		
+		[Column(Storage="_SprintId", DbType="BigInt NOT NULL")]
+		public long SprintId
+		{
+			get
+			{
+				return this._SprintId;
+			}
+			set
+			{
+				if ((this._SprintId != value))
+				{
+					this._SprintId = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_BacklogItemId", DbType="BigInt NOT NULL")]
+		public long BacklogItemId
+		{
+			get
+			{
+				return this._BacklogItemId;
+			}
+			set
+			{
+				if ((this._BacklogItemId != value))
+				{
+					this._BacklogItemId = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_ProdutoId", DbType="BigInt NOT NULL")]
+		public long ProdutoId
+		{
+			get
+			{
+				return this._ProdutoId;
+			}
+			set
+			{
+				if ((this._ProdutoId != value))
+				{
+					this._ProdutoId = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_Nome", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Nome
+		{
+			get
+			{
+				return this._Nome;
+			}
+			set
+			{
+				if ((this._Nome != value))
+				{
+					this._Nome = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_Nota", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
+		public string Nota
+		{
+			get
+			{
+				return this._Nota;
+			}
+			set
+			{
+				if ((this._Nota != value))
+				{
+					this._Nota = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_Data", DbType="SmallDateTime NOT NULL")]
+		public System.DateTime Data
+		{
+			get
+			{
+				return this._Data;
+			}
+			set
+			{
+				if ((this._Data != value))
+				{
+					this._Data = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_Estimativa", DbType="Float NOT NULL")]
+		public double Estimativa
+		{
+			get
+			{
+				return this._Estimativa;
+			}
+			set
+			{
+				if ((this._Estimativa != value))
+				{
+					this._Estimativa = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_Objetivo", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string Objetivo
+		{
+			get
+			{
+				return this._Objetivo;
+			}
+			set
+			{
+				if ((this._Objetivo != value))
+				{
+					this._Objetivo = value;
+				}
+			}
 		}
 	}
 }

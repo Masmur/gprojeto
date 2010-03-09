@@ -58,4 +58,16 @@
       <Association Name="Empresa_Sprint" Member="Empresa" ThisKey="EmpresaId" OtherKey="EmpresaId" Type="Empresa" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.vSprintBackLog" Member="vSprintBackLogs">
+    <Type Name="vSprintBackLog">
+      <Column Name="SprintId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="BacklogItemId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ProdutoId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Nome" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Nota" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="Data" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Estimativa" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Objetivo" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
 </Database>

@@ -1,17 +1,5 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<IEnumerable<GerenciadorProjeto.Models.vSprintBackLog>>" %>
 <div class="pageActions">
-    <p>
-        <%= Ajax.ActionLink("Adicionar", "Create", new { ProdutoId = ViewData["ProdutoId"] },
-                                                    new AjaxOptions
-                                                    {
-                                                        HttpMethod = "GET",
-                                                        InsertionMode = InsertionMode.Replace,
-                                                        UpdateTargetId = "formCreateBackLog",
-                                                        LoadingElementId = "carregando"
-                                                    })%>
-    </p> 
-    <div id="formCreateBackLog">
-    </div>
 </div>                                           
     <% foreach (var item in Model) { %>
     <ul>
@@ -24,8 +12,8 @@
                 </div>
                 <ul class="rightContainer">
                     <li>
-                        <%= Ajax.ActionLink("Remover", "Remove", "Sprint", new { BacklogItemId = item.BacklogItemId, ProdutoId = ViewData["ProdutoId"] },
-                                                                            new AjaxOptions {   Confirm = "Confirma a deleção??",
+                        <%= Ajax.ActionLink("Remover", "RemoveBakLogItem", "Sprint", new { BacklogItemId = item.BacklogItemId, SprintId = item.SprintId  },
+                                                                            new AjaxOptions {   Confirm = "Confirma a remoção??",
                                                                                                 HttpMethod = "POST",
                                                                                                 InsertionMode = InsertionMode.Replace,
                                                                                                 UpdateTargetId = "listBacklog",
