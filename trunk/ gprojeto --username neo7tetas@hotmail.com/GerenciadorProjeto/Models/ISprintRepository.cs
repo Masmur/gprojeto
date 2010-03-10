@@ -12,5 +12,6 @@ namespace GerenciadorProjeto.Models
         void AddSprint(Sprint NewSprint);
         void EditSprint(Sprint SprintEdited);
         Sprint GetSprintById(int SprintId);
+        IQueryable<vSprintBackLog> ListSprintBacklog(int SprintId);
     }
 }

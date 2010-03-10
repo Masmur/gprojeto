@@ -75,6 +75,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\IsCurrentActionHelper.cs" />
+    <Compile Include="Models\ColaboradorRepository.cs" />
+    <Compile Include="Models\IColaboradorRepository.cs" />
     <Compile Include="Models\IProdutoRepository.cs" />
     <Compile Include="Models\ISprintRepository.cs" />
     <Compile Include="Models\Model.designer.cs">

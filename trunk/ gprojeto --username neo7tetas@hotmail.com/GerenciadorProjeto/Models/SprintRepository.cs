@@ -51,5 +51,14 @@ namespace GerenciadorProjeto.Models
 
             _modelSprint.SubmitChanges();
         }
+
+        public IQueryable<vSprintBackLog> ListSprintBacklog(int SprintId)
+        {
+            var query = from sprintBackLog in _modelSprint.vSprintBackLogs
+                        where sprintBackLog.SprintId == SprintId
+                        select sprintBackLog;
+
+            return query.AsQueryable();
+        }
     }
 }

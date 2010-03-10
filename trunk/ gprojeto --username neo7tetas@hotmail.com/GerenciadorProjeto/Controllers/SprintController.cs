@@ -48,7 +48,6 @@ namespace GerenciadorProjeto.Controllers
 
         //
         // GET: /Sprint/Backlog/5
-
         public ActionResult SprintBacklog(int SprintId)
         {
             // Retornar o Sprint informado no cabeçalho da função.
@@ -62,13 +61,11 @@ namespace GerenciadorProjeto.Controllers
         // GET: /Sprint/SprintBackLogList
         public ActionResult SprintBackLogList(int SprintId)
         {
-            // Retorna lista.
-            return PartialView("SprintBackLogList", _model.vSprintBackLogs.Where(p => p.SprintId == SprintId)); 
+            return PartialView("SprintBackLogList", repSprint.ListSprintBacklog(SprintId)); 
         }
 
         //
         // GET: /Sprint/Details/5
-
         public ActionResult Details(int SprintId)
         {
             // Retornar o Sprint informado no cabeçalho da função.
@@ -80,7 +77,6 @@ namespace GerenciadorProjeto.Controllers
 
         //
         // GET: /Sprint/Calendario/5
-
         public ActionResult Calendario(int SprintId)
         {
 
