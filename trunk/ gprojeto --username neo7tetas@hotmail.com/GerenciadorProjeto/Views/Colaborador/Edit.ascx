@@ -1,5 +1,5 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<GerenciadorProjeto.Models.Colaborador>" %>
-    <% using (Ajax.BeginForm("Edit", "Colaborador", new { ColaboradorId = Model.ColaboradorId }, new AjaxOptions
+    <% using (Ajax.BeginForm("Edit", "Colaborador", new AjaxOptions
        {
            HttpMethod = "POST",
            InsertionMode = InsertionMode.Replace,
@@ -11,6 +11,7 @@
         <fieldset>
             <legend>Editar Colaborador</legend>
                 <%= Html.Hidden("EmpresaId", ViewData["EmpresaId"])%>
+                <%= Html.Hidden("ColaboradorId", Model.ColaboradorId.ToString())%>
             <p>
                 <label for="Nome">Nome:</label>
                 <%= Html.TextBox("Nome", Model.Nome) %>
