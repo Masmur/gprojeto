@@ -13,8 +13,6 @@ namespace GerenciadorProjeto.Controllers
     public class SprintController : Controller
     {
 
-        ModelDataContext _model = new ModelDataContext();
-
         //Repositorio do Sprint.
         private ISprintRepository repSprint;
 
@@ -48,7 +46,7 @@ namespace GerenciadorProjeto.Controllers
 
         //
         // GET: /Sprint/Backlog/5
-        public ActionResult SprintBacklog(int SprintId)
+        public ActionResult SprintBacklog(long SprintId)
         {
             // Retornar o Sprint informado no cabeçalho da função.
             var sprintToDetail = repSprint.GetSprintById(SprintId);
@@ -59,14 +57,14 @@ namespace GerenciadorProjeto.Controllers
 
         //
         // GET: /Sprint/SprintBackLogList
-        public ActionResult SprintBackLogList(int SprintId)
+        public ActionResult SprintBackLogList(long SprintId)
         {
             return PartialView("SprintBackLogList", repSprint.ListSprintBacklog(SprintId)); 
         }
 
         //
         // GET: /Sprint/Details/5
-        public ActionResult Details(int SprintId)
+        public ActionResult Details(long SprintId)
         {
             // Retornar o Sprint informado no cabeçalho da função.
             var sprintToDetail = repSprint.GetSprintById(SprintId);
@@ -77,7 +75,7 @@ namespace GerenciadorProjeto.Controllers
 
         //
         // GET: /Sprint/Calendario/5
-        public ActionResult Calendario(int SprintId)
+        public ActionResult Calendario(long SprintId)
         {
 
             // Retornar o Sprint informado no cabeçalho da função.
@@ -102,7 +100,7 @@ namespace GerenciadorProjeto.Controllers
             return View(_calendario);
         }
 
-        public ActionResult Calendar(int SprintId, int ano, int mes)
+        public ActionResult Calendar(long SprintId, int ano, int mes)
         {
             
             // Retornar o Sprint informado no cabeçalho da função.
@@ -130,7 +128,7 @@ namespace GerenciadorProjeto.Controllers
         //
         // GET: /Sprint/Create
 
-        public ActionResult Create(int EmpresaId)
+        public ActionResult Create(long EmpresaId)
         {
             ViewData["EmpresaId"] = EmpresaId;
             return PartialView("Create");
@@ -194,7 +192,7 @@ namespace GerenciadorProjeto.Controllers
 
         //
         // POST: /Sprint/Delete/5
-        public ActionResult Delete(int SprintId)
+        public ActionResult Delete(long SprintId)
         {
             repSprint.DeleteASprint(SprintId);
 

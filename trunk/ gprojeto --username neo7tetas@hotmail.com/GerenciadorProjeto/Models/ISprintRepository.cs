@@ -7,11 +7,11 @@ namespace GerenciadorProjeto.Models
 {
     public interface ISprintRepository
     {
-        IQueryable<Sprint> GetAllSprints(int EmpresaId);
-        void DeleteASprint(int SprintId);
+        IQueryable<Sprint> GetAllSprints(long EmpresaId);
+        void DeleteASprint(long SprintId);
         void AddSprint(Sprint NewSprint);
         void EditSprint(Sprint SprintEdited);
-        Sprint GetSprintById(int SprintId);
-        IQueryable<vSprintBackLog> ListSprintBacklog(int SprintId);
+        Sprint GetSprintById(long SprintId);
+        IQueryable<vSprintBackLog> ListSprintBacklog(long SprintId);
     }
 }

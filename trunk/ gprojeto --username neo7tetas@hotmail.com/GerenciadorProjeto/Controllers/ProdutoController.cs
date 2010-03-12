@@ -44,7 +44,7 @@ namespace GerenciadorProjeto.Controllers
 
         //
         // GET: /Produto/Details/5
-        public ActionResult Details(int ProdutoId)
+        public ActionResult Details(long ProdutoId)
         {
             var produtoToDetail = repProduto.GetProdutoById(ProdutoId);
             ViewData["ProdutoId"] = ProdutoId;
@@ -54,7 +54,7 @@ namespace GerenciadorProjeto.Controllers
 
         //
         // GET: /Produto/Create
-        public ActionResult Create(int EmpresaId)
+        public ActionResult Create(long EmpresaId)
         {
             ViewData["EmpresaId"] = EmpresaId;
             return PartialView("Create");
@@ -82,7 +82,7 @@ namespace GerenciadorProjeto.Controllers
 
         //
         // GET: /Produto/Edit/5
-        public ActionResult Edit(int ProdutoId)
+        public ActionResult Edit(long ProdutoId)
         {
             var produtoToEdit = repProduto.GetProdutoById(ProdutoId);
 
@@ -112,7 +112,7 @@ namespace GerenciadorProjeto.Controllers
 
         //
         // POST: /Produto/Delete/5
-        public ActionResult Delete(int ProdutoId)
+        public ActionResult Delete(long ProdutoId)
         {
             repProduto.DeleteAProduto(ProdutoId);
             return PartialView("List", repProduto.GetAllProdutos(Convert.ToInt32(Session["EmpresaId"])));

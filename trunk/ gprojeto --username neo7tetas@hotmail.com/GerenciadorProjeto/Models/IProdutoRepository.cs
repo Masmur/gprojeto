@@ -7,10 +7,10 @@ namespace GerenciadorProjeto.Models
 {
     public interface IProdutoRepository
     {
-        IQueryable<Produto> GetAllProdutos(int EmpresaId);
-        void DeleteAProduto(int ProdutoId);
+        IQueryable<Produto> GetAllProdutos(long EmpresaId);
+        void DeleteAProduto(long ProdutoId);
         void AddProduto(Produto NewProduto);
         void EditProduto(Produto ProdutoEdited);
-        Produto GetProdutoById(int ProdutoId);
+        Produto GetProdutoById(long ProdutoId);
     }
 }

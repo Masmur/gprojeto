@@ -15,7 +15,7 @@ namespace GerenciadorProjeto.Models
             _modelProduto = new ModelDataContext();
         }
 
-        public IQueryable<Produto> GetAllProdutos(int EmpresaId)
+        public IQueryable<Produto> GetAllProdutos(long EmpresaId)
         {
             var query = from produto in _modelProduto.Produtos
                         where produto.EmpresaId == EmpresaId
@@ -24,7 +24,7 @@ namespace GerenciadorProjeto.Models
             return query.AsQueryable();
         }
 
-        public void DeleteAProduto(int ProdutoId)
+        public void DeleteAProduto(long ProdutoId)
         {
             var query = from produto in _modelProduto.Produtos
                         where produto.ProdutoId == ProdutoId
@@ -40,7 +40,7 @@ namespace GerenciadorProjeto.Models
             _modelProduto.SubmitChanges();
         }
 
-        public Produto GetProdutoById(int ProdutoId)
+        public Produto GetProdutoById(long ProdutoId)
         {
             return _modelProduto.Produtos.Where(p => p.ProdutoId == ProdutoId).FirstOrDefault();
         }
