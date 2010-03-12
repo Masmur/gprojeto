@@ -15,7 +15,7 @@ namespace GerenciadorProjeto.Models
             _modelColaborador = new ModelDataContext();
         }
 
-        public IQueryable<Colaborador> GetAllColaboradores(int EmpresaId)
+        public IQueryable<Colaborador> GetAllColaboradores(long EmpresaId)
         {
             var query = from colaborador in _modelColaborador.Colaboradors
                         where colaborador.EmpresaId == EmpresaId
@@ -24,7 +24,7 @@ namespace GerenciadorProjeto.Models
             return query.AsQueryable();
         }
 
-        public void DeleteAColaborador(int ColaboradorId)
+        public void DeleteAColaborador(long ColaboradorId)
         {
             var query = from colaborador in _modelColaborador.Colaboradors
                         where colaborador.ColaboradorId == ColaboradorId
@@ -48,7 +48,7 @@ namespace GerenciadorProjeto.Models
             _modelColaborador.SubmitChanges();
         }
 
-        public Colaborador GetColaboradorById(int ColaboradorId)
+        public Colaborador GetColaboradorById(long ColaboradorId)
         {
             return _modelColaborador.Colaboradors.Where(p => p.ColaboradorId == ColaboradorId).FirstOrDefault();
         }

@@ -15,7 +15,7 @@ namespace GerenciadorProjeto.Models
             _modelSprint = new ModelDataContext();
         }
 
-        public IQueryable<Sprint> GetAllSprints(int EmpresaId)
+        public IQueryable<Sprint> GetAllSprints(long EmpresaId)
         {
             var query = from sprint in _modelSprint.Sprints
                         where sprint.EmpresaId == EmpresaId
@@ -24,7 +24,7 @@ namespace GerenciadorProjeto.Models
             return query.AsQueryable();
         }
 
-        public void DeleteASprint(int SprintID)
+        public void DeleteASprint(long SprintID)
         {
             var query = from sprint in _modelSprint.Sprints
                         where sprint.SprintId == SprintID
@@ -40,7 +40,7 @@ namespace GerenciadorProjeto.Models
             _modelSprint.SubmitChanges();
         }
 
-        public Sprint GetSprintById(int SprintId)
+        public Sprint GetSprintById(long SprintId)
         {
             return _modelSprint.Sprints.Where(p => p.SprintId == SprintId).FirstOrDefault();
         }
@@ -52,7 +52,7 @@ namespace GerenciadorProjeto.Models
             _modelSprint.SubmitChanges();
         }
 
-        public IQueryable<vSprintBackLog> ListSprintBacklog(int SprintId)
+        public IQueryable<vSprintBackLog> ListSprintBacklog(long SprintId)
         {
             var query = from sprintBackLog in _modelSprint.vSprintBackLogs
                         where sprintBackLog.SprintId == SprintId

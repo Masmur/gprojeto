@@ -7,10 +7,10 @@ namespace GerenciadorProjeto.Models
 {
     public interface IColaboradorRepository
     {
-        IQueryable<Colaborador> GetAllColaboradores(int EmpresaId);
-        void DeleteAColaborador(int EmpresaId);
+        IQueryable<Colaborador> GetAllColaboradores(long EmpresaId);
+        void DeleteAColaborador(long EmpresaId);
         void AddColaborador(Colaborador NewColaborador);
         void EditColaborador(Colaborador ColaboradorEdited);
-        Colaborador GetColaboradorById(int ColaboradorId);
+        Colaborador GetColaboradorById(long ColaboradorId);
     }
 }

@@ -7,10 +7,11 @@ namespace GerenciadorProjeto.Models
 {
     public interface IBacklogRepository
     {
-        IQueryable<BacklogItem> GetAllProdutos(int EmpresaId);
-        void DeleteABaklogItem(int ProdutoId);
-        void AddBacklogItem(BacklogItem NewProduto);
-        void EditBacklogItem(BacklogItem ProdutoEdited);
-        Produto GetBaklogItemById(int ProdutoId);
+        IQueryable<BacklogItem> GetAllBacklogItens(long ProdutoId);
+        void DeleteABaklogItem(long BacklogItemId, long ProdutoId);
+        void AddBacklogItem(BacklogItem NewBacklogItem);
+        void EditBacklogItem(BacklogItem BacklogItemEdited);
+        BacklogItem GetBaklogItemById(long BacklogItemId);
+        Produto GetProdutoById(long ProdutoId);
     }
 }

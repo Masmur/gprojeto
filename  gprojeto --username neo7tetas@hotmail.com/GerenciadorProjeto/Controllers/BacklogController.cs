@@ -10,8 +10,21 @@ namespace GerenciadorProjeto.Controllers
 {
     public class BacklogController : Controller
     {
-        // Objeto que faz interação com o banco.
-        ModelDataContext _model = new ModelDataContext();
+        //Repositorio do produto.
+        private IBacklogRepository repBackLogItem;
+
+        // Cria Istancia da classe no contructor.
+        public BacklogController()
+            : this(new BacklogItemRepository())
+        {
+
+        }
+
+        // Configura estrutura do repositorio para ser ultiilizada.
+        public BacklogController(IBacklogRepository Repository)
+        {
+            repBackLogItem = Repository;
+        }
 
         //
         // GET: /Backlog/
@@ -19,10 +32,12 @@ namespace GerenciadorProjeto.Controllers
         public ActionResult Index(int ProdutoId)
         {
             // Retorna Backlog do produto.
-            var produtoToDetail = _model.Produtos.Where(p => p.ProdutoId == ProdutoId).First();
+            var produtoToDetail = repBackLogItem.GetProdutoById(ProdutoId);
             ViewData["ProdutoId"] = ProdutoId;
             ViewData["titulo"] = produtoToDetail.Nome;
-            return View(_model.BacklogItems.Where(p => p.ProdutoId == ProdutoId));
+
+            var AllProdutos = repBackLogItem.GetAllBacklogItens(ProdutoId);
+            return View(AllProdutos);
         }
 
         //
@@ -32,7 +47,7 @@ namespace GerenciadorProjeto.Controllers
         {
             // Retorna Backlog do produto.
             ViewData["ProdutoId"] = ProdutoId;
-            return PartialView("List",_model.BacklogItems.Where(p => p.ProdutoId == ProdutoId));
+            return PartialView("List", repBackLogItem.GetAllBacklogItens(ProdutoId));
         }
 
         //
@@ -62,27 +77,24 @@ namespace GerenciadorProjeto.Controllers
             {
                 // TODO: Add insert logic here
                 ViewData["ProdutoId"] = novoBackLogItem.ProdutoId;
-                _model.BacklogItems.InsertOnSubmit(novoBackLogItem);
 
-                _model.SubmitChanges();
+                repBackLogItem.AddBacklogItem(novoBackLogItem);
 
-                return PartialView("List", _model.BacklogItems.Where(p => p.ProdutoId == novoBackLogItem.ProdutoId));
+                return PartialView("List", repBackLogItem.GetAllBacklogItens(novoBackLogItem.ProdutoId));
             }
             catch
             {
-                return PartialView("List", _model.BacklogItems.Where(p => p.ProdutoId == novoBackLogItem.ProdutoId));
+                return PartialView("List", repBackLogItem.GetAllBacklogItens(novoBackLogItem.ProdutoId));
             }
         }
 
         //
         // GET: /Backlog/Edit/5
 
-        public ActionResult Edit(int BacklogItemId)
+        public ActionResult Edit(long BacklogItemId)
         {
 
-            var backLogItemToEdit = (from m in _model.BacklogItems
-                                 where m.BacklogItemId == BacklogItemId
-                                 select m).FirstOrDefault();
+            var backLogItemToEdit = repBackLogItem.GetBaklogItemById(BacklogItemId);
 
             ViewData["ProdutoId"] = backLogItemToEdit.ProdutoId;
             return PartialView(backLogItemToEdit);
@@ -92,41 +104,36 @@ namespace GerenciadorProjeto.Controllers
         // POST: /Backlog/Edit/5
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Edit([Bind(Exclude="Data")]int BacklogItemId, BacklogItem BackLotItemEdited)
+        public ActionResult Edit([Bind(Exclude="Data")] BacklogItem BackLogItemEdited)
         {
             try
             {
                 // TODO: Add update logic here
 
-                ViewData["ProdutoId"] = BackLotItemEdited.ProdutoId;
+                ViewData["ProdutoId"] = BackLogItemEdited.ProdutoId;
                 if (!ModelState.IsValid)
                 {
-                    return PartialView("List", _model.BacklogItems.Where(p => p.ProdutoId == BackLotItemEdited.ProdutoId));
+                    return PartialView("List", repBackLogItem.GetAllBacklogItens(BackLogItemEdited.ProdutoId));
                 }
 
-                _model.BacklogItems.First(p => p.BacklogItemId == BacklogItemId).Nome = BackLotItemEdited.Nome;
-                _model.BacklogItems.First(p => p.BacklogItemId == BacklogItemId).Estimativa = BackLotItemEdited.Estimativa;
-                _model.BacklogItems.First(p => p.BacklogItemId == BacklogItemId).Nota = BackLotItemEdited.Nota;
+                repBackLogItem.EditBacklogItem(BackLogItemEdited);
 
-                _model.SubmitChanges();
-
-                return PartialView("List", _model.BacklogItems.Where(p => p.ProdutoId == BackLotItemEdited.ProdutoId));
+                return PartialView("List", repBackLogItem.GetAllBacklogItens(BackLogItemEdited.ProdutoId));
             }
             catch
             {
-                return PartialView("List", _model.BacklogItems.Where(p => p.ProdutoId == BackLotItemEdited.ProdutoId));
+                return PartialView("List", repBackLogItem.GetAllBacklogItens(BackLogItemEdited.ProdutoId));
             }
         }
         //
         // POST: /Backlog/Delete/5
-        public ActionResult Delete(int BacklogItemId, int ProdutoId)
+        public ActionResult Delete(long BacklogItemId, long ProdutoId)
         {
             ViewData["ProdutoId"] = ProdutoId;
-            _model.BacklogItems.DeleteOnSubmit(_model.BacklogItems.First(p => p.BacklogItemId == BacklogItemId));
 
-            _model.SubmitChanges();
+            repBackLogItem.DeleteABaklogItem(BacklogItemId, ProdutoId);
 
-            return PartialView("List", _model.BacklogItems.Where(p => p.BacklogItemId == ProdutoId));
+            return PartialView("List", repBackLogItem.GetAllBacklogItens(ProdutoId));
         }
     }
 }

@@ -1,6 +1,6 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<GerenciadorProjeto.Models.BacklogItem>" %>
 <div class="innerContainer">
-    <% using (Ajax.BeginForm("Edit", "Backlog", new { BacklogItemId = Model.BacklogItemId }, new AjaxOptions
+    <% using (Ajax.BeginForm("Edit", "Backlog", new AjaxOptions
        {
            HttpMethod = "POST",
            InsertionMode = InsertionMode.Replace,
@@ -12,6 +12,7 @@
         <fieldset>
             <legend>Editando BacklogItem</legend>
                 <%= Html.Hidden("ProdutoId", ViewData["ProdutoId"]) %>
+                <%= Html.Hidden("BacklogItemId", Model.BacklogItemId)%>
             <p>
                 <label for="Nome">Nome:</label>
                 <%= Html.TextBox("Nome", Model.Nome) %>
