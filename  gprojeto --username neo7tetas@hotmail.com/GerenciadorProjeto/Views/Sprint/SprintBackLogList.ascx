@@ -1,4 +1,4 @@
-<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
+<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<IEnumerable<GerenciadorProjeto.Models.vSprintBackLog>>" %>
 <div class="pageActions">
     <p>
         <%= Ajax.ActionLink("Adicionar", "Create", new { ProdutoId = ViewData["ProdutoId"] },
@@ -40,5 +40,3 @@
         </li>
     </ul>
     <% } %>
-
-

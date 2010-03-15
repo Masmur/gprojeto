@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Web.Mvc, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core">
@@ -90,6 +91,7 @@
     <Content Include="Content\ajax-loader.gif" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Referencias\Microsoft.Web.Mvc.dll" />
     <Content Include="Views\Backlog\Create.ascx" />
     <Content Include="Views\Backlog\Edit.ascx" />
     <Content Include="Views\Backlog\Index.aspx" />
@@ -104,7 +106,7 @@
     <Content Include="Views\Produto\Index.aspx" />
     <Content Include="Views\Produto\List.ascx" />
     <Content Include="Views\Sprint\Backlog.aspx" />
-    <Content Include="Views\Sprint\Backlog_ikd.aspx" />
+    <Content Include="Views\Sprint\Backlog_old.aspx" />
     <Content Include="Views\Sprint\Calendar.ascx" />
     <Content Include="Views\Sprint\Calendario.aspx" />
     <Content Include="Views\Sprint\Create.ascx" />

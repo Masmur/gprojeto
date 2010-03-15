@@ -38,22 +38,10 @@ namespace GerenciadorProjeto.Controllers
         public ActionResult Backlog(int SprintId)
         {
             // Retornar o Sprint informado no cabeçalho da função.
-            var sprintToDetail = _model.Sprints.Where(p => p.SprintId == SprintId).First();
-            ViewData["SprintId"] = SprintId;           
-            ViewData["titulo"] = sprintToDetail.Objetivo;
-
-            var backLogList = (from _BackLog in _model.BacklogItems
-                               join _SprintBackLog in _model.SprintBackLogs on _BackLog.BacklogItemId equals _SprintBackLog.BacklogItemId
-                               where _SprintBackLog.SprintId == SprintId
-                               select new
-                               {
-                                   _BackLog.BacklogItemId,
-                                   _BackLog.Nome
-                               });
-
-            ViewData["SprintBackLogItem"] = backLogList;
-
-            return View(sprintToDetail);
+            var sprintDetatil = _model.Sprints.Where(p => p.SprintId == SprintId).Single();
+            ViewData["SprintId"] = SprintId;
+            ViewData["titulo"] = sprintDetatil.Objetivo;
+            return View();
         }
 
         //
@@ -61,17 +49,6 @@ namespace GerenciadorProjeto.Controllers
         public ActionResult SprintBackLogList(int SprintId)
         {
             // Retorna lista.
-            var backLogList = (from _BackLog in _model.BacklogItems
-                               join _SprintBackLog in _model.SprintBackLogs on _BackLog.BacklogItemId equals _SprintBackLog.BacklogItemId
-                               where _SprintBackLog.SprintId == SprintId
-                               select new
-                               {
-                                   _BackLog.BacklogItemId,
-                                   _BackLog.Nome
-                               });
-
-            ViewData["SprintBackLogItem"] = backLogList;
-
             return PartialView(); 
         }
 
