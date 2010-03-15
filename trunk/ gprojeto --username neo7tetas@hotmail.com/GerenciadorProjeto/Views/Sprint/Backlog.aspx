@@ -8,8 +8,6 @@
     <div id="content">
         <h1>Sprint BackLog</h1> 
         <div id="listSprintBackLog">
-            <%Html.RenderPartial("SprintBackLogList");%>
         </div>                   
     </div>
 </asp:Content>
-

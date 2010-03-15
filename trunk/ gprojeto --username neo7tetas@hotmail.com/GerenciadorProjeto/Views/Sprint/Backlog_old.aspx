@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<GerenciadorProjeto.Models.GerenciadorProjeto.Models.vSprintBackLog>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<GerenciadorProjeto.Models.vSprintBackLog>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Backlog
@@ -8,7 +8,7 @@
     <div id="content">
         <h1>Sprint BackLog</h1> 
         <div id="listSprintBackLog">
-            <% Html.RenderPartial("SprintBackLogList"); %>
+            <%Html.RenderPartial("SprintBackLogList");%>
         </div>                   
     </div>
 </asp:Content>
