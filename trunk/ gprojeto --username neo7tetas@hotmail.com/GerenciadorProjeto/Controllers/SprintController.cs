@@ -45,6 +45,15 @@ namespace GerenciadorProjeto.Controllers
         }
 
         //
+        // GET: /Sprint/ListProduto/5
+        public ActionResult ListProduto(long EmpresaId, long SprintId)
+        {
+            ViewData["SpritId"] = SprintId;
+            return PartialView("ListProduto", repSprint.GetAllProdutos(Convert.ToInt32(Session["EmpresaId"])));
+        }
+
+
+        //
         // GET: /Sprint/Backlog/5
         public ActionResult SprintBacklog(long SprintId)
         {
@@ -63,8 +72,27 @@ namespace GerenciadorProjeto.Controllers
         }
 
         //
+        // GET: /Sprint/ProdutoBackLogList
+        public ActionResult ProdutoBackLogList(long ProdutoId, long SprintId)
+        {
+            ViewData["SprintId"] = SprintId;
+            return PartialView("ProdutoBackLogList", repSprint.ListProdutoBacklog(ProdutoId));
+        }
+
+        //
         // GET: /Sprint/Details/5
         public ActionResult Details(long SprintId)
+        {
+            // Retornar o Sprint informado no cabeçalho da função.
+            var sprintToDetail = repSprint.GetSprintById(SprintId);
+            ViewData["SprintId"] = SprintId;
+            ViewData["titulo"] = sprintToDetail.Objetivo;
+            return View(sprintToDetail);
+        }
+
+        //
+        // GET: /Sprint/BackLogItemNaoPlanejado/5
+        public ActionResult BackLogItemNaoPlanejado(long SprintId)
         {
             // Retornar o Sprint informado no cabeçalho da função.
             var sprintToDetail = repSprint.GetSprintById(SprintId);
@@ -198,5 +226,25 @@ namespace GerenciadorProjeto.Controllers
 
             return PartialView("List", repSprint.GetAllSprints(Convert.ToInt32(Session["EmpresaId"])));
         }
+
+        //
+        // POST: /Sprint/AdicionarBackLogItem/5
+        public ActionResult AdicionarBackLogItem(long SprintId, long BackLogItemId, long ProdutoId)
+        {
+            repSprint.AddToSprint(SprintId, BackLogItemId);
+            ViewData["SprintId"] = SprintId;
+
+            return PartialView("ProdutoBackLogList", repSprint.ListProdutoBacklog(ProdutoId));
+        }
+
+        //
+        // POST: /Sprint/RemoverBackLogItem/5
+        public ActionResult RemoverBackLogItem(long SprintId, long BacklogItemId)
+        {
+            repSprint.RemoveBackLogItem(BacklogItemId);
+
+            return PartialView("SprintBackLogList", repSprint.ListSprintBacklog(SprintId)); 
+        }
+
     }
 }
