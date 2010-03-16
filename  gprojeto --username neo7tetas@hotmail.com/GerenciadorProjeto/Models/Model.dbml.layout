@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.875" name="Model">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 9.125" name="Model">
   <DataContextMoniker Name="/ModelDataContext" />
   <nestedChildShapes>
     <classShape Id="144dc865-55a9-4221-b15e-1fc3a0fe26b2" absoluteBounds="0.625, 0.5, 2, 1.0961531575520833">
@@ -80,10 +80,16 @@
         <classShapeMoniker Id="42a09faf-1b28-479c-b3ec-602efe01307e" />
       </nodes>
     </associationConnector>
-    <classShape Id="5f1ca21f-df97-4d1b-9db9-35979eac861b" absoluteBounds="0.625, 6.5, 2, 2.0822371419270831">
+    <classShape Id="edf1ef30-1170-4e7b-b815-7401edcd49a2" absoluteBounds="3.375, 6.5, 2, 2.0822371419270831">
+      <DataClassMoniker Name="/ModelDataContext/vBackLogProduto" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ee3fc64b-2ac2-46ee-8da4-6064cb6b90d3" absoluteBounds="3.39, 6.96, 1.9700000000000002, 1.5222371419270833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4af37ebb-38d5-42f0-8691-f1b7c56bd78d" absoluteBounds="0.625, 6.625, 2, 2.24658447265625">
       <DataClassMoniker Name="/ModelDataContext/vSprintBackLog" />
       <nestedChildShapes>
-        <elementListCompartment Id="23329d47-6226-45a2-9dcc-4c6d13bc8dd8" absoluteBounds="0.64, 6.96, 1.9700000000000002, 1.5222371419270833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="da4270e3-3bad-4bc6-9cb1-ec4076f9913d" absoluteBounds="0.64, 7.085, 1.9700000000000002, 1.68658447265625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

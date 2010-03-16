@@ -40,6 +40,17 @@ namespace GerenciadorProjeto.Models
             _modelSprint.SubmitChanges();
         }
 
+        public void AddToSprint(long SprintId, long BacklogItemId)
+        {
+            SprintBackLog newSprintBacklotItem = new SprintBackLog();
+            newSprintBacklotItem.BacklogItemId = BacklogItemId;
+            newSprintBacklotItem.SprintId = SprintId;
+
+            _modelSprint.SprintBackLogs.InsertOnSubmit(newSprintBacklotItem);
+
+            _modelSprint.SubmitChanges();
+        }
+
         public Sprint GetSprintById(long SprintId)
         {
             return _modelSprint.Sprints.Where(p => p.SprintId == SprintId).FirstOrDefault();
@@ -59,6 +70,35 @@ namespace GerenciadorProjeto.Models
                         select sprintBackLog;
 
             return query.AsQueryable();
+        }
+
+        public IQueryable<vBackLogProduto> ListProdutoBacklog(long ProdutoId)
+        {
+            var query = from produtoBackLog in _modelSprint.vBackLogProdutos
+                        where produtoBackLog.ProdutoId == ProdutoId
+                        select produtoBackLog;
+
+            return query.AsQueryable();
+        }
+
+        public IQueryable<Produto> GetAllProdutos(long EmpresaId)
+        {
+            var query = from produto in _modelSprint.Produtos
+                        where produto.EmpresaId == EmpresaId
+                        select produto;
+
+            return query.AsQueryable();
+        }
+
+        public void RemoveBackLogItem(long BacklogItemId)
+        {
+            var query = from sprintBackLog in _modelSprint.SprintBackLogs
+                        where sprintBackLog.BacklogItemId == BacklogItemId
+                        select sprintBackLog;
+
+            _modelSprint.SprintBackLogs.DeleteOnSubmit(query.FirstOrDefault());
+
+            _modelSprint.SubmitChanges();
         }
     }
 }
