@@ -76,8 +76,10 @@
     </Compile>
     <Compile Include="Helpers\IsCurrentActionHelper.cs" />
     <Compile Include="Models\BacklogItemRepository.cs" />
+    <Compile Include="Models\BacklogTaskRepository.cs" />
     <Compile Include="Models\ColaboradorRepository.cs" />
     <Compile Include="Models\IBacklogRepository.cs" />
+    <Compile Include="Models\IBacklogTaskRepository.cs" />
     <Compile Include="Models\IColaboradorRepository.cs" />
     <Compile Include="Models\IProdutoRepository.cs" />
     <Compile Include="Models\ISprintRepository.cs" />

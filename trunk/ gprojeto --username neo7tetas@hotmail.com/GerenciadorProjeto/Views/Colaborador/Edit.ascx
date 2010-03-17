@@ -15,8 +15,11 @@
             <p>
                 <label for="Nome">Nome:</label>
                 <%= Html.TextBox("Nome", Model.Nome) %>
-                <%= Html.ValidationMessage("Nome", "*") %>
             </p>
+            <p>
+                <label for="Email">E-mail:</label>
+                <%= Html.TextBox("email") %>
+            </p>             
             <p>
                 <input type="submit" value="Atualizar" />
                 <%= Ajax.ActionLink("Cancelar", "List", new AjaxOptions

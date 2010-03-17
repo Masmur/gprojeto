@@ -44,6 +44,7 @@ namespace GerenciadorProjeto.Models
         public void EditColaborador(Colaborador ColaboradorEdited)
         {
             _modelColaborador.Colaboradors.First(p => p.ColaboradorId == ColaboradorEdited.ColaboradorId).Nome = ColaboradorEdited.Nome;
+            _modelColaborador.Colaboradors.First(p => p.ColaboradorId == ColaboradorEdited.ColaboradorId).email = ColaboradorEdited.email;
 
             _modelColaborador.SubmitChanges();
         }

@@ -6,8 +6,8 @@
       <Column Name="EmpresaId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Nome" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Association Name="Empresa_Produto" Member="Produtos" ThisKey="EmpresaId" OtherKey="EmpresaId" Type="Produto" />
-      <Association Name="Empresa_Colaborador" Member="Colaboradors" ThisKey="EmpresaId" OtherKey="EmpresaId" Type="Colaborador" />
       <Association Name="Empresa_Sprint" Member="Sprints" ThisKey="EmpresaId" OtherKey="EmpresaId" Type="Sprint" />
+      <Association Name="Empresa_Colaborador" Member="Colaboradors" ThisKey="EmpresaId" OtherKey="EmpresaId" Type="Colaborador" />
     </Type>
   </Table>
   <Table Name="dbo.BacklogItem" Member="BacklogItems">
@@ -19,6 +19,7 @@
       <Column Name="Data" AutoSync="Never" Type="System.DateTime" DbType="SmallDateTime NOT NULL" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Estimativa" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Association Name="BacklogItem_SprintBackLog" Member="SprintBackLogs" ThisKey="BacklogItemId" OtherKey="BacklogItemId" Type="SprintBackLog" />
+      <Association Name="BacklogItem_BacklogTask" Member="BacklogTasks" ThisKey="BacklogItemId" OtherKey="BacklogItemId" Type="BacklogTask" />
       <Association Name="Produto_BacklogItem" Member="Produto" ThisKey="ProdutoId" OtherKey="ProdutoId" Type="Produto" IsForeignKey="true" />
     </Type>
   </Table>
@@ -38,14 +39,6 @@
       <Column Name="Data" AutoSync="Never" Type="System.DateTime" DbType="SmallDateTime NOT NULL" IsDbGenerated="true" CanBeNull="false" />
       <Association Name="Produto_BacklogItem" Member="BacklogItems" ThisKey="ProdutoId" OtherKey="ProdutoId" Type="BacklogItem" />
       <Association Name="Empresa_Produto" Member="Empresa" ThisKey="EmpresaId" OtherKey="EmpresaId" Type="Empresa" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Colaboradores" Member="Colaboradors">
-    <Type Name="Colaborador">
-      <Column Name="ColaboradorId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="EmpresaId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Column Name="Nome" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="Empresa_Colaborador" Member="Empresa" ThisKey="EmpresaId" OtherKey="EmpresaId" Type="Empresa" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Sprint" Member="Sprints">
@@ -81,6 +74,24 @@
       <Column Name="Estimativa" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="Objetivo" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="NomeProduto" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Colaboradores" Member="Colaboradors">
+    <Type Name="Colaborador">
+      <Column Name="ColaboradorId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EmpresaId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Nome" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="email" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Empresa_Colaborador" Member="Empresa" ThisKey="EmpresaId" OtherKey="EmpresaId" Type="Empresa" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BacklogTask" Member="BacklogTasks">
+    <Type Name="BacklogTask">
+      <Column Name="BacklogTaskId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="BacklogItemId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Nome" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Estimativa" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Association Name="BacklogItem_BacklogTask" Member="BacklogItem" ThisKey="BacklogItemId" OtherKey="BacklogItemId" Type="BacklogItem" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
