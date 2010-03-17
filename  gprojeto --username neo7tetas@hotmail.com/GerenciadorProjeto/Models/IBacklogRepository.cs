@@ -7,7 +7,7 @@ namespace GerenciadorProjeto.Models
 {
     public interface IBacklogRepository
     {
-        IQueryable<BacklogItem> GetAllBacklogItens(long ProdutoId);
+        IQueryable<BacklogItem> GetAllBacklogItens(long BacklogItemId);
         void DeleteABaklogItem(long BacklogItemId, long ProdutoId);
         void AddBacklogItem(BacklogItem NewBacklogItem);
         void EditBacklogItem(BacklogItem BacklogItemEdited);

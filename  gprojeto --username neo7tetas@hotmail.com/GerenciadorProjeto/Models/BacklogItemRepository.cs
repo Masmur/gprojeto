@@ -58,6 +58,5 @@ namespace GerenciadorProjeto.Models
         {
             return _modelBacklogItem.Produtos.Where(p => p.ProdutoId == ProdutoId).FirstOrDefault();
         }
-
     }
 }
