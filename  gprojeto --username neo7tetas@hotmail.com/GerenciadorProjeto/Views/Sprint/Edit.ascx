@@ -1,4 +1,5 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<GerenciadorProjeto.Models.Sprint>" %>
+<div class="innerContainer">
     <% using (Ajax.BeginForm("Edit","Sprint", new { SprintId = Model.SprintId }, new AjaxOptions
        {
            HttpMethod = "POST",
@@ -21,5 +22,5 @@
         </fieldset>
 
     <% } %>
-
+</div>
 
