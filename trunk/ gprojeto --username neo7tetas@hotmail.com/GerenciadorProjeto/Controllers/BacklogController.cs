@@ -125,6 +125,7 @@ namespace GerenciadorProjeto.Controllers
                 return PartialView("List", repBackLogItem.GetAllBacklogItens(BackLogItemEdited.ProdutoId));
             }
         }
+
         //
         // POST: /Backlog/Delete/5
         public ActionResult Delete(long BacklogItemId, long ProdutoId)

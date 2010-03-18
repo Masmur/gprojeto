@@ -5,8 +5,8 @@ to use a different color start by replacing all instances of
 ----------------------------------------------------------*/
 body
 {
-    background-color: #5c87b2;
-    font-size: .75em;
+    background-color: #1A3265;
+    font-size: 0.75em;
     font-family: Verdana, Helvetica, Sans-Serif;
     margin: 0;
     padding: 0;
@@ -99,6 +99,7 @@ page width. Or, you can specify an exact pixel width. */
     margin-bottom: 0px;
     color: #000;
     padding: 0;
+    background:url("HeaderBkg.jpg") repeat-x scroll left top transparent
 }
 
 #navigation {
@@ -194,9 +195,11 @@ ul#menu
     border-bottom: 0px #5C87B2 solid;
     padding: 0 0 0px;
     position: relative;
-    margin: 0 0 0 10px;
+    margin: 0 0 0 0px;
+    padding-left: 10px;
     text-align: left;
-    height: 25px;
+    height: 32px;
+    background-color:#0097CA;
 }
 
 ul#menu li
@@ -217,34 +220,38 @@ ul#menu li#greeting
 ul#menu li a
 {
     padding: 7px 20px;
-    font-weight: bold;
+    /*font-weight: bold;*/
     text-decoration: none;
-    line-height: 22px;
-    background-color: #e8eef4;
-    color: #034af3;
+    line-height: 37px;
+    background-color: #0097CA;
+    color: White;
+    font-size:11px;
 }
 
 ul#menu li a:hover
 {
     background-color: #fff;
     text-decoration: none;
+    color: Black;
 }
 
 ul#menu li a:active
 {
-    background-color: #a6e2a6;
+    background-color: White;
     text-decoration: none;
 }
 
 ul#menu li.selected a
 {
     background-color:#FFFFFF;
+    /*
     border-left-style:solid;
     border-left-width:1px;
     border-right-style:solid;
     border-right-width:1px;
     border-top-style:solid;
     border-top-width:1px;
+    */
     color:#000000;    
 }
 
@@ -399,8 +406,8 @@ div#title
 	-moz-border-radius-topleft:10px;
 	-moz-border-radius-topright:10px;
     */
-	border-style:solid;
-	border-width:1px 2px 2px 1px;
+	border-style: dotted;
+	border-width:1px 1px 1px 1px;
 	clear:both;
 	margin:auto auto auto;
 	min-height:200px;
@@ -420,14 +427,14 @@ div#title
 	background:#F1F1F1 none repeat scroll 0 0;
 	border-bottom:1px solid #E2E2E2;
 */
-	color:#333333;
+	color:#696969;
 	/*
 	-moz-border-radius-topleft:6px;
 	-moz-border-radius-topright:6px;
 */
 	line-height:30px;
 	margin:10px;
-	padding:0 0 0 10px;
+	padding:0 0 0 0px;
 }
 
 .itemContainer 
@@ -438,7 +445,7 @@ div#title
     */
     background-color:White;
     border-color:#EFF4FA;
-    border-style:solid;
+    border-style:dotted;
     border-width:1px 2px 2px 1px;
     height:38px;
     margin:10px 10px 0;
@@ -549,7 +556,7 @@ ul {
     -moz-border-radius-bottomright:8px;
     /*background:#EDF8E7 url(/images/bg_form_inline.png) repeat-x scroll left top;*/
     border-color:-moz-use-text-color #EFF4FA #EFF4FA;
-    border-style:none solid solid;
+    border-style:none dotted dotted;
     border-width:medium 2px 2px 1px;
     margin-left:20px;
     margin-right:10px;

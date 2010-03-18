@@ -24,10 +24,10 @@
                 </div>
                 <ul class="rightContainer">
                     <li>
-                        <%= Ajax.ActionLink("Tarefas", "Taks", "Backlog", new { BacklogItemId = item.BacklogItemId, ProdutoId = ViewData["ProdutoId"] },
+                        <%= Ajax.ActionLink("Tarefas", "List", "BacklogTask", new { BacklogItemId = item.BacklogItemId},
                                                                             new AjaxOptions {   HttpMethod = "GET",
                                                                                                 InsertionMode = InsertionMode.Replace,
-                                                                                                UpdateTargetId = "container_formEdit_BackLogItem_" + item.BacklogItemId.ToString(),
+                                                                                                UpdateTargetId = "container_TaskList_BackLogItem_" + item.BacklogItemId.ToString(),
                                                                                                 LoadingElementId = "carregando"
                                                                             },
                                                                             new { Class = "radiusMenu" })%>
@@ -56,6 +56,8 @@
             </div> 
             <div id="container_formEdit_BackLogItem_<%= item.BacklogItemId.ToString() %>">
             </div>                        
+            <div id="container_TaskList_BackLogItem_<%= item.BacklogItemId.ToString() %>">
+            </div>                                    
         </li>
     </ul>
     <% } %>
