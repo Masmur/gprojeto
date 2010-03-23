@@ -1,4 +1,5 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<GerenciadorProjeto.Models.Colaborador>" %>
+<div class="outerContainer">
     <% using (Ajax.BeginForm("Create", "Colaborador", new AjaxOptions
        {
            HttpMethod = "POST",
@@ -31,5 +32,4 @@
         </fieldset>
 
     <% } %>
-
-
+</div>

@@ -1,4 +1,5 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<GerenciadorProjeto.Models.Produto>" %>
+<div class="outerContainer">
     <% using (Ajax.BeginForm("Create","Produto", new AjaxOptions
        {
            HttpMethod = "POST",
@@ -22,6 +23,6 @@
         </fieldset>
 
     <% } %>
-
+</div>
 
 

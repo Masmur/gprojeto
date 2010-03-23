@@ -206,6 +206,8 @@ ul#menu li#greeting
 
 ul#menu li a
 {
+    -moz-border-radius-topleft:4px;
+    -moz-border-radius-topright:4px;    
     padding: 7px 20px;
     /*font-weight: bold;*/
     text-decoration: none;
@@ -241,7 +243,7 @@ fieldset
 {
     margin: 1em 0;
     padding: 1em;
-    border: 1px solid #CCC;
+    border: 0px solid #CCC;
 }
 
 fieldset p 
@@ -268,9 +270,17 @@ legend
 
 input[type="text"] 
 {
-    width: 200px;
+    width: 300px;
     border: 1px solid #CCC;
 }
+
+textarea
+{
+    width: 300px;
+    height:50px;
+    border: 1px solid #CCC;
+}
+
 
 input[type="password"] 
 {
@@ -589,4 +599,16 @@ ul {
     font-weight:bold;
     padding:6px;
     text-transform:uppercase;
+}
+
+.outerContainer  {
+    -moz-border-radius-bottomleft:8px;
+    -moz-border-radius-bottomright:8px;
+    -moz-border-radius-topleft:8px;
+    -moz-border-radius-topright:8px;
+    border-color:#B2B2B2;
+    border-style:solid;
+    border-width:1px 1px 2px;
+    margin:0 10px 10px;
+    padding:6px 10px 10px;
 }

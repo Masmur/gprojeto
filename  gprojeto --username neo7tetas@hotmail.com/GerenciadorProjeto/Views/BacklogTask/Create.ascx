@@ -1,4 +1,5 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<GerenciadorProjeto.Models.BacklogTask>" %>
+<div class="outerContainer">
     <% using (Ajax.BeginForm("Create", "BacklogTask", new AjaxOptions
        {
            HttpMethod = "POST",
@@ -31,4 +32,4 @@
         </fieldset>
 
     <% } %>
-
+</div>
