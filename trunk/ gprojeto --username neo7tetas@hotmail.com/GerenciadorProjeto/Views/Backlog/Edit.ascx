@@ -19,7 +19,7 @@
             </p>
             <p>
                 <label for="Nota">Nota:</label>
-                <%= Html.TextBox("Nota", Model.Nota) %>
+                <%= Html.TextArea("Nota", Model.Nota)%>
             </p>
             <p>
                 <label for="Estimativa">Estimativa:</label>
