@@ -19,6 +19,7 @@
             <div class="itemContainer">
                 <div class="leftContainer lastContainer">
                     <label title="<%= Html.Encode(item.Nome)%>" >
+                        <img src="../../Content/images/ico_produto.png" alt="ico_produto"/>
                         <%= Html.Encode(item.Nome)%>
                     </label>       
                 </div>

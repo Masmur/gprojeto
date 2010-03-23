@@ -101,6 +101,12 @@
     </Content>
     <Content Include="Content\ajax-loader.gif" />
     <Content Include="Content\HeaderBkg.jpg" />
+    <Content Include="Content\images\icon_planeduserstory.png" />
+    <Content Include="Content\images\ico_colaborador.png" />
+    <Content Include="Content\images\ico_produto.png" />
+    <Content Include="Content\images\ico_sprint.png" />
+    <Content Include="Content\images\ico_userstory.png" />
+    <Content Include="Content\images\ico_usertask.png" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Referencias\Microsoft.Web.Mvc.dll" />

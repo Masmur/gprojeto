@@ -12,12 +12,12 @@ body
     padding: 0;
     color: #696969;
 }
-
+/*
 a:link
 {
     color: #034af3;
 }
-
+*/
 a:visited
 {
     color: #505abc;
@@ -426,13 +426,20 @@ div#title
 }
 
 .itemContainer label, .itemLabel img {
-    margin-left:4px;
+    margin-left:4px;   
 }
 
 .itemContainer label, .itemLabel {
     float:left;
     line-height:38px;
     margin-left:3px;
+}
+
+#content .itemContainer label img {
+    border:medium none;
+    float:left;
+    margin:4px 6px 0 0;
+    vertical-align:middle;
 }
 
 li {
