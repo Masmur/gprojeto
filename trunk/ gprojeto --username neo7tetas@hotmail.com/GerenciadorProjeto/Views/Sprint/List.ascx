@@ -19,6 +19,7 @@
             <div class="itemContainer">
                 <div class="leftContainer lastContainer">
                     <label title="<%= Html.Encode(item.Objetivo)%>" >
+                        <img src="../../Content/images/ico_sprint.png" alt="ico_sprint"/>
                         <%= Html.Encode(item.Objetivo)%>
                     </label>       
                 </div>
