@@ -8,7 +8,7 @@ namespace GerenciadorProjeto.Models
     public interface ISprintRepository
     {
         IQueryable<Sprint> GetAllSprints(long EmpresaId);
-        IQueryable<Produto> GetAllProdutos(long EmpresaId);
+        IQueryable<vListProdutoSprint> GetAllProdutos(long EmpresaId);
         void DeleteASprint(long SprintId);
         void RemoveBackLogItem(long BacklogItemId);
         void AddSprint(Sprint NewSprint);

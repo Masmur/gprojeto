@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 9.125" name="Model">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 10.875" name="Model">
   <DataContextMoniker Name="/ModelDataContext" />
   <nestedChildShapes>
     <classShape Id="144dc865-55a9-4221-b15e-1fc3a0fe26b2" absoluteBounds="0.625, 0.5, 2, 1.0961531575520833">
@@ -67,10 +67,10 @@
         <classShapeMoniker Id="42a09faf-1b28-479c-b3ec-602efe01307e" />
       </nodes>
     </associationConnector>
-    <classShape Id="edf1ef30-1170-4e7b-b815-7401edcd49a2" absoluteBounds="3.375, 6.5, 2, 2.0822371419270831">
+    <classShape Id="edf1ef30-1170-4e7b-b815-7401edcd49a2" absoluteBounds="3.375, 6.625, 2, 2.0822371419270831">
       <DataClassMoniker Name="/ModelDataContext/vBackLogProduto" />
       <nestedChildShapes>
-        <elementListCompartment Id="ee3fc64b-2ac2-46ee-8da4-6064cb6b90d3" absoluteBounds="3.39, 6.96, 1.9700000000000002, 1.5222371419270833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="ee3fc64b-2ac2-46ee-8da4-6064cb6b90d3" absoluteBounds="3.39, 7.085, 1.9700000000000002, 1.5222371419270833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="4af37ebb-38d5-42f0-8691-f1b7c56bd78d" absoluteBounds="0.625, 6.625, 2, 2.24658447265625">
@@ -98,12 +98,18 @@
         <elementListCompartment Id="2beb8c01-387d-4bf2-9abd-2602cfb57a3d" absoluteBounds="6.265, 2.835, 1.9700000000000002, 0.86484781901041674" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.375 : 3.08742390950521); (6.25 : 3.08742390950521)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.375 : 3.08742390950521); (6.25 : 3.08742390950521)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ModelDataContext/BacklogItem/BacklogItem_BacklogTask" />
       <nodes>
         <classShapeMoniker Id="5c443ce9-04d5-479c-8d89-be1c459724f0" />
         <classShapeMoniker Id="3df220c2-9ecf-4ed8-ac41-4327633e28bd" />
       </nodes>
     </associationConnector>
+    <classShape Id="1d59a8e4-e137-41ac-892e-0897e622f6a5" absoluteBounds="0.625, 9.25, 2, 1.4248478190104168">
+      <DataClassMoniker Name="/ModelDataContext/vListProdutoSprint" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7a20cc06-18e9-4ecb-899e-ee66941ba733" absoluteBounds="0.64, 9.71, 1.9700000000000002, 0.86484781901041674" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

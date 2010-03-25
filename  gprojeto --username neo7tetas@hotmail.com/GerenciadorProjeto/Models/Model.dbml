@@ -94,4 +94,12 @@
       <Association Name="BacklogItem_BacklogTask" Member="BacklogItem" ThisKey="BacklogItemId" OtherKey="BacklogItemId" Type="BacklogItem" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.vListProdutoSprint" Member="vListProdutoSprints">
+    <Type Name="vListProdutoSprint">
+      <Column Name="ProdutoId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="EmpresaId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Nome" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Data" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
 </Database>

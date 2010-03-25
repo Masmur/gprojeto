@@ -81,11 +81,11 @@ namespace GerenciadorProjeto.Models
             return query.AsQueryable();
         }
 
-        public IQueryable<Produto> GetAllProdutos(long EmpresaId)
+        public IQueryable<vListProdutoSprint> GetAllProdutos(long EmpresaId)
         {
-            var query = from produto in _modelSprint.Produtos
-                        where produto.EmpresaId == EmpresaId
-                        select produto;
+            var query = from ProdutoSprint in _modelSprint.vListProdutoSprints
+                        where ProdutoSprint.EmpresaId == EmpresaId
+                        select ProdutoSprint;
 
             return query.AsQueryable();
         }
