@@ -154,6 +154,14 @@ namespace GerenciadorProjeto.Models
 				return this.GetTable<BacklogTask>();
 			}
 		}
+		
+		public System.Data.Linq.Table<vListProdutoSprint> vListProdutoSprints
+		{
+			get
+			{
+				return this.GetTable<vListProdutoSprint>();
+			}
+		}
 	}
 	
 	[Table(Name="dbo.Empresas")]
@@ -1849,6 +1857,87 @@ namespace GerenciadorProjeto.Models
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.vListProdutoSprint")]
+	public partial class vListProdutoSprint
+	{
+		
+		private long _ProdutoId;
+		
+		private long _EmpresaId;
+		
+		private string _Nome;
+		
+		private System.DateTime _Data;
+		
+		public vListProdutoSprint()
+		{
+		}
+		
+		[Column(Storage="_ProdutoId", DbType="BigInt NOT NULL")]
+		public long ProdutoId
+		{
+			get
+			{
+				return this._ProdutoId;
+			}
+			set
+			{
+				if ((this._ProdutoId != value))
+				{
+					this._ProdutoId = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_EmpresaId", DbType="BigInt NOT NULL")]
+		public long EmpresaId
+		{
+			get
+			{
+				return this._EmpresaId;
+			}
+			set
+			{
+				if ((this._EmpresaId != value))
+				{
+					this._EmpresaId = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_Nome", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Nome
+		{
+			get
+			{
+				return this._Nome;
+			}
+			set
+			{
+				if ((this._Nome != value))
+				{
+					this._Nome = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_Data", DbType="SmallDateTime NOT NULL")]
+		public System.DateTime Data
+		{
+			get
+			{
+				return this._Data;
+			}
+			set
+			{
+				if ((this._Data != value))
+				{
+					this._Data = value;
+				}
 			}
 		}
 	}
