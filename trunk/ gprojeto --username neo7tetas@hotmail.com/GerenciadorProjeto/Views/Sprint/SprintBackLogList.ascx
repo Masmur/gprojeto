@@ -28,6 +28,7 @@
                 <div class="innerContainer">
                     <label title="<%= Html.Encode(item.NomeProduto)%>" >
                         <%= Html.Encode(item.NomeProduto)%>
+                        <%Html.RenderAction("List", "BacklogTask", new { item.BacklogItemId }); %>
                     </label>                                      
                 </div>
             </div>                        

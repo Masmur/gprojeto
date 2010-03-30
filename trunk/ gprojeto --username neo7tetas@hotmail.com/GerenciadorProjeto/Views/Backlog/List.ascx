@@ -25,7 +25,7 @@
                 </div>
                 <ul class="rightContainer">
                     <li>
-                        <%= Ajax.ActionLink("Tarefas", "List", "BacklogTask", new { BacklogItemId = item.BacklogItemId},
+                        <%= Ajax.ActionLink("Listar tarefas", "List", "BacklogTask", new { BacklogItemId = item.BacklogItemId},
                                                                             new AjaxOptions {   HttpMethod = "GET",
                                                                                                 InsertionMode = InsertionMode.Replace,
                                                                                                 UpdateTargetId = "container_TaskList_BackLogItem_" + item.BacklogItemId.ToString(),
@@ -57,8 +57,8 @@
             </div> 
             <div id="container_formEdit_BackLogItem_<%= item.BacklogItemId.ToString() %>">
             </div>                        
-            <div id="container_TaskList_BackLogItem_<%= item.BacklogItemId.ToString() %>">
-            </div>                                    
+            <div id="container_TaskList_BackLogItem_<%= item.BacklogItemId.ToString() %>">              
+            </div>                                                                                    
         </li>
     </ul>
     <% } %>

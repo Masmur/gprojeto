@@ -21,7 +21,7 @@
             </p>
             <p>
                 <input type="submit" value="Adicionar" />
-                <%= Ajax.ActionLink("Cancelar", "List", new { BacklogItemId = ViewData["BacklogItemId"] }, 
+                <%= Ajax.ActionLink("Cancelar", "List", "BacklogTask", new { BacklogItemId = ViewData["BacklogItemId"] }, 
                                                         new AjaxOptions         {
                                                                                     InsertionMode = InsertionMode.Replace,
                                                                                     UpdateTargetId = "container_TaskList_BackLogItem_" + ViewData["BacklogItemId"],
